@@ -1,0 +1,3908 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВСЕЛЕННАЯ И КОСМОС - Тайны мироздания</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/orbitron@latest/latin-700.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(to bottom, #000851, #002878, #001a4d, #000851);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .hero-title, .section-title, nav a {
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+        }
+
+        /* Яркий фон */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(123, 47, 247, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 212, 255, 0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 107, 107, 0.15) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* Кнопка "Наверх" */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            border: 2px solid #00d4ff;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-top-btn.visible { opacity: 1; visibility: visible; }
+        .scroll-top-btn:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 0 40px rgba(0, 212, 255, 0.9); }
+        .scroll-top-btn::before { content: '🚀'; font-size: 28px; animation: rocketBounce 2s infinite; }
+
+        @keyframes rocketBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Звездное небо - ярче */
+        .stars {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* Падающие звёзды */
+        .shooting-star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 15px white, 0 0 30px #00d4ff;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.9), transparent);
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes shootingStar {
+            0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
+            10% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translate(600px, 600px) rotate(-45deg); opacity: 0; }
+        }
+
+        /* ===== ЛЕТАЮЩЕЕ НЛО ===== */
+        .ufo {
+            position: fixed;
+            width: 120px;
+            height: 60px;
+            z-index: 5;
+            pointer-events: none;
+            animation: ufoFly 35s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 200, 0.8));
+        }
+
+        @keyframes ufoFly {
+            0% { top: 15%; left: -150px; transform: rotate(-5deg); }
+            25% { top: 30%; left: 30%; transform: rotate(5deg); }
+            50% { top: 10%; left: 60%; transform: rotate(-3deg); }
+            75% { top: 40%; left: 85%; transform: rotate(8deg); }
+            100% { top: 20%; left: 110%; transform: rotate(-5deg); }
+        }
+
+        .ufo-body {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            top: 15px;
+            background: linear-gradient(180deg, #c0c0c0 0%, #808080 50%, #404040 100%);
+            border-radius: 50%;
+            box-shadow: 
+                inset 0 -5px 10px rgba(0,0,0,0.5),
+                inset 0 5px 10px rgba(255,255,255,0.3),
+                0 0 20px rgba(0, 255, 200, 0.6);
+        }
+
+        .ufo-dome {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at 30% 30%, rgba(150, 255, 255, 0.9), rgba(0, 150, 200, 0.7), rgba(0, 50, 100, 0.9));
+            border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+            border: 2px solid rgba(0, 255, 200, 0.6);
+            box-shadow: 
+                inset -5px -5px 10px rgba(0,0,0,0.4),
+                inset 5px 5px 10px rgba(255,255,255,0.4),
+                0 0 15px rgba(0, 255, 200, 0.8);
+            overflow: hidden;
+        }
+
+        .ufo-dome::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 15px;
+            top: 8px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        .ufo-lights {
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            top: 26px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .ufo-light {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ffc8;
+            box-shadow: 0 0 10px #00ffc8, 0 0 20px #00ffc8;
+            animation: ufoLightBlink 0.8s infinite alternate;
+        }
+
+        .ufo-light:nth-child(2) { animation-delay: 0.2s; background: #ff00ff; box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; }
+        .ufo-light:nth-child(3) { animation-delay: 0.4s; background: #ffff00; box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00; }
+        .ufo-light:nth-child(4) { animation-delay: 0.6s; background: #00d4ff; box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff; }
+        .ufo-light:nth-child(5) { animation-delay: 0.8s; background: #ff6b6b; box-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b; }
+
+        @keyframes ufoLightBlink {
+            0% { opacity: 0.4; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .ufo-beam {
+            position: absolute;
+            width: 80px;
+            height: 150px;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, 
+                rgba(0, 255, 200, 0.4) 0%, 
+                rgba(0, 255, 200, 0.2) 50%, 
+                transparent 100%);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+            animation: beamPulse 2s infinite ease-in-out;
+            filter: blur(3px);
+        }
+
+        @keyframes beamPulse {
+            0%, 100% { opacity: 0.5; transform: translateX(-50%) scaleY(1); }
+            50% { opacity: 0.9; transform: translateX(-50%) scaleY(1.1); }
+        }
+
+        /* 3D туманности - ярче */
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 0;
+            animation: nebulaFloat 20s infinite ease-in-out;
+        }
+
+        .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, #b047ff, transparent); top: 5%; left: -15%; }
+        .nebula-2 { width: 600px; height: 600px; background: radial-gradient(circle, #00d4ff, transparent); top: 45%; right: -15%; animation-delay: -10s; }
+        .nebula-3 { width: 500px; height: 500px; background: radial-gradient(circle, #ff6b6b, transparent); bottom: 5%; left: 25%; animation-delay: -5s; }
+        .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, #ffc800, transparent); top: 70%; right: 20%; animation-delay: -15s; opacity: 0.3; }
+
+        @keyframes nebulaFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -30px) scale(1.15); }
+            66% { transform: translate(-30px, 50px) scale(0.9); }
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 5, 30, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 15px 10px;
+            border-bottom: 2px solid #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: #fff; text-shadow: 0 0 15px #00d4ff, 0 0 25px #7b2ff7; transform: scale(1.1); }
+
+        /* Главная секция - ярче */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1500px;
+            padding: 120px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hologram-container {
+            width: 100%;
+            max-width: 1400px;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hologram-content {
+            background: rgba(0, 10, 40, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 0 100px rgba(0, 212, 255, 0.5),
+                0 0 200px rgba(123, 47, 247, 0.3),
+                inset 0 0 80px rgba(0, 212, 255, 0.15);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hologram-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 212, 255, 0.15) 50%, transparent 70%);
+            animation: hologramShine 8s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes hologramShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .hero-title {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #7b2ff7, #ff6b6b, #00d4ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s infinite, gradientShift 5s infinite;
+            transform: translateZ(50px);
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 30px rgba(0, 212, 255, 0.8)); }
+            50% { filter: brightness(1.4) drop-shadow(0 0 50px rgba(123, 47, 247, 0.9)); }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4em;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #c0f0ff;
+            transform: translateZ(30px);
+            line-height: 1.6;
+            min-height: 3em;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        .typed-cursor {
+            display: inline-block;
+            width: 3px;
+            background: #00d4ff;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+            box-shadow: 0 0 10px #00d4ff;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Карточки фактов */
+        .hero-facts-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            transform: translateZ(20px);
+        }
+
+        .hero-fact-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(123, 47, 247, 0.2));
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .hero-fact-card::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #00d4ff, #7b2ff7, #ff6b6b, #00d4ff);
+            background-size: 400% 400%;
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        .hero-fact-card:hover::before { opacity: 1; }
+        .hero-fact-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 15px 50px rgba(0, 212, 255, 0.5); }
+
+        .hero-fact-icon { font-size: 3em; margin-bottom: 10px; display: block; animation: floatIcon 3s ease-in-out infinite; }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-fact-title { color: #00d4ff; font-size: 1.1em; font-weight: bold; margin-bottom: 8px; }
+        .hero-fact-value { color: #ffc800; font-size: 1.5em; font-weight: bold; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 15px rgba(255, 200, 0, 0.7); }
+        .hero-fact-desc { color: #c0e7ff; font-size: 0.85em; margin-top: 5px; line-height: 1.4; }
+
+        /* Обратный отсчёт */
+        .countdown-section {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(123, 47, 247, 0.15));
+            border: 2px solid rgba(255, 107, 107, 0.5);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            transform: translateZ(20px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.3), transparent);
+            animation: countdownShine 4s infinite;
+        }
+
+        @keyframes countdownShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .countdown-title { color: #ff6b6b; font-size: 1.3em; margin-bottom: 10px; font-weight: bold; text-shadow: 0 0 15px rgba(255, 107, 107, 0.7); }
+        .countdown-event { color: #fff; font-size: 1.1em; margin-bottom: 20px; }
+
+        .countdown-timer { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 15px 20px;
+            min-width: 90px;
+            box-shadow: 0 0 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .countdown-value { font-size: 2.2em; color: #ff6b6b; font-weight: bold; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 20px rgba(255, 107, 107, 0.8); line-height: 1; }
+        .countdown-label { color: #ffd0d0; font-size: 0.85em; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ===== 3D СЦЕНА - БОЛЬШЕ И ЯРЧЕ ===== */
+        .hero-3d-scene {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            perspective: 1500px;
+            transform-style: preserve-3d;
+            min-height: 500px;
+        }
+
+        .scene-3d-object {
+            width: 320px;
+            height: 450px;
+            transform-style: preserve-3d;
+            position: relative;
+            transition: transform 0.5s;
+        }
+
+        .scene-3d-object:hover { transform: scale(1.05) rotateY(10deg); }
+
+        /* ===== 3D ЗЕМЛЯ - С БОЛЬШИМ КОЛИЧЕСТВОМ ДЕТАЛЕЙ ===== */
+        .earth-3d {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            transform-style: preserve-3d;
+            animation: earthFloat 8s infinite ease-in-out;
+        }
+
+        @keyframes earthFloat {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-25px) rotateY(180deg); }
+        }
+
+        /* Внешнее свечение */
+        .earth-outer-glow {
+            position: absolute;
+            width: 130%;
+            height: 130%;
+            top: -15%;
+            left: -15%;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(0, 212, 255, 0.3) 0%, 
+                rgba(0, 150, 255, 0.15) 40%, 
+                transparent 70%);
+            animation: outerGlowPulse 4s infinite ease-in-out;
+        }
+
+        @keyframes outerGlowPulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.08); }
+        }
+
+        /* Атмосфера */
+        .earth-atmosphere {
+            position: absolute;
+            width: 115%;
+            height: 115%;
+            top: -7.5%;
+            left: -7.5%;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                transparent 43%, 
+                rgba(100, 200, 255, 0.3) 50%, 
+                rgba(0, 150, 255, 0.15) 60%, 
+                transparent 70%);
+            animation: atmospherePulse 4s infinite ease-in-out;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+        }
+
+        @keyframes atmospherePulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        /* Основная сфера Земли */
+        .earth-sphere {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at 25% 25%, #8ecfff 0%, #4a90d9 20%, #1e5a9e 50%, #0a2a5e 90%, #051530 100%);
+            box-shadow: 
+                inset -40px -40px 80px rgba(0, 0, 0, 0.7),
+                inset 30px 30px 60px rgba(142, 207, 255, 0.4),
+                inset -10px -10px 30px rgba(0, 50, 100, 0.5),
+                0 0 80px rgba(0, 212, 255, 0.7),
+                0 0 150px rgba(0, 100, 200, 0.4);
+            overflow: hidden;
+        }
+
+        /* Материки - более детальные */
+        .earth-sphere::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: 
+                /* Северная Америка */
+                radial-gradient(ellipse 55px 40px at 28% 35%, #3d8f3d 0%, #2d7a2d 40%, transparent 70%),
+                radial-gradient(ellipse 30px 25px at 22% 45%, #4a9f4a 0%, transparent 60%),
+                /* Южная Америка */
+                radial-gradient(ellipse 35px 55px at 35% 65%, #3d8f3d 0%, #2d7a2d 40%, transparent 70%),
+                /* Европа */
+                radial-gradient(ellipse 30px 20px at 52% 32%, #4a9f4a 0%, #3d8f3d 50%, transparent 70%),
+                /* Африка */
+                radial-gradient(ellipse 45px 60px at 55% 55%, #3d8f3d 0%, #2d7a2d 40%, transparent 70%),
+                radial-gradient(ellipse 25px 30px at 50% 48%, #4a9f4a 0%, transparent 60%),
+                /* Азия */
+                radial-gradient(ellipse 70px 45px at 72% 38%, #3d8f3d 0%, #2d7a2d 40%, transparent 70%),
+                radial-gradient(ellipse 35px 25px at 65% 45%, #4a9f4a 0%, transparent 60%),
+                /* Австралия */
+                radial-gradient(ellipse 30px 22px at 82% 68%, #4a9f4a 0%, #3d8f3d 50%, transparent 70%),
+                /* Антарктида */
+                radial-gradient(ellipse 80px 20px at 50% 95%, #ffffff 0%, #e0e0e0 50%, transparent 80%);
+            opacity: 0.9;
+        }
+
+        /* Облака */
+        .earth-sphere::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: 
+                radial-gradient(ellipse 90px 18px at 35% 25%, rgba(255,255,255,0.5) 0%, transparent 70%),
+                radial-gradient(ellipse 110px 22px at 60% 50%, rgba(255,255,255,0.4) 0%, transparent 70%),
+                radial-gradient(ellipse 70px 15px at 20% 70%, rgba(255,255,255,0.45) 0%, transparent 70%),
+                radial-gradient(ellipse 80px 16px at 75% 75%, rgba(255,255,255,0.4) 0%, transparent 70%),
+                radial-gradient(ellipse 60px 14px at 45% 85%, rgba(255,255,255,0.35) 0%, transparent 70%);
+            animation: cloudsMove 60s linear infinite;
+        }
+
+        @keyframes cloudsMove {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Блики */
+        .earth-highlight {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3) 0%, transparent 30%),
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Луна */
+        .earth-moon {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #f0f0f0, #a0a0a0, #606060);
+            box-shadow: 
+                inset -8px -8px 15px rgba(0,0,0,0.6),
+                inset 3px 3px 8px rgba(255,255,255,0.4),
+                0 0 25px rgba(255,255,255,0.5);
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            animation: moonOrbit 12s linear infinite;
+        }
+
+        .earth-moon::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            top: 30%;
+            left: 40%;
+        }
+
+        .earth-moon::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 50%;
+            top: 55%;
+            left: 25%;
+        }
+
+        @keyframes moonOrbit {
+            from { transform: rotate(0deg) translateX(185px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(185px) rotate(-360deg); }
+        }
+
+        /* Орбита Луны */
+        .earth-moon-orbit {
+            position: absolute;
+            width: 370px;
+            height: 370px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        /* Спутники */
+        .earth-satellite {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            animation: satelliteOrbit 8s linear infinite;
+        }
+
+        .earth-satellite::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 4px;
+            background: linear-gradient(90deg, #c0c0c0, #ffffff, #c0c0c0);
+            top: 5px;
+            left: 2px;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .earth-satellite::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #0066cc, #00d4ff, #0066cc);
+            top: 6px;
+            left: -3px;
+            box-shadow: 0 0 5px rgba(0, 212, 255, 0.8);
+        }
+
+        @keyframes satelliteOrbit {
+            from { transform: rotate(0deg) translateX(170px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(170px) rotate(-360deg); }
+        }
+
+        .earth-satellite-2 {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            animation: satelliteOrbit2 14s linear infinite reverse;
+        }
+
+        .earth-satellite-2::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffc800, #ffffff, #ffc800);
+            top: 6px;
+            left: 3px;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(255, 200, 0, 0.8);
+        }
+
+        .earth-satellite-2::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 2px;
+            background: linear-gradient(90deg, #cc6600, #ffc800, #cc6600);
+            top: 7px;
+            left: 0;
+            box-shadow: 0 0 5px rgba(255, 200, 0, 0.8);
+        }
+
+        @keyframes satelliteOrbit2 {
+            from { transform: rotate(90deg) translateX(160px) rotate(-90deg); }
+            to { transform: rotate(450deg) translateX(160px) rotate(-450deg); }
+        }
+
+        .earth-label, .rocket-label, .astronaut-label {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00d4ff;
+            font-weight: bold;
+            text-shadow: 0 0 15px #00d4ff, 0 0 25px #00d4ff;
+            font-size: 1.1em;
+            white-space: nowrap;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .rocket-label { bottom: -50px; }
+
+        /* ===== 3D РАКЕТА - БОЛЬШЕ ДЕТАЛЕЙ ===== */
+        .rocket-3d {
+            position: relative;
+            width: 320px;
+            height: 450px;
+            transform-style: preserve-3d;
+            animation: rocketFloat 4s infinite ease-in-out;
+        }
+
+        @keyframes rocketFloat {
+            0%, 100% { transform: translateY(0) rotateZ(-3deg); }
+            50% { transform: translateY(-35px) rotateZ(3deg); }
+        }
+
+        /* Корпус ракеты */
+        .rocket-body {
+            position: absolute;
+            width: 90px;
+            height: 220px;
+            left: 50%;
+            top: 60px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, 
+                #707070 0%, 
+                #b0b0b0 15%, 
+                #ffffff 45%, 
+                #ffffff 55%, 
+                #b0b0b0 85%, 
+                #707070 100%);
+            border-radius: 45px 45px 25px 25px;
+            box-shadow: 
+                inset -15px 0 25px rgba(0,0,0,0.4),
+                inset 15px 0 25px rgba(255,255,255,0.4),
+                0 0 40px rgba(255, 255, 255, 0.4),
+                0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Нос ракеты */
+        .rocket-nose {
+            position: absolute;
+            width: 90px;
+            height: 80px;
+            left: 50%;
+            top: -10px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, 
+                #8b0000 0%, 
+                #cc0000 20%, 
+                #ff3333 50%, 
+                #cc0000 80%, 
+                #8b0000 100%);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            box-shadow: inset -5px 0 15px rgba(0,0,0,0.4);
+        }
+
+        .rocket-nose::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #ffffff, #ffff00);
+            border-radius: 50%;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px #ffff00, 0 0 25px #ff8800;
+            animation: noseBeacon 2s infinite;
+        }
+
+        @keyframes noseBeacon {
+            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.3); }
+        }
+
+        /* Главное окно */
+        .rocket-window {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            left: 50%;
+            top: 100px;
+            transform: translateX(-50%);
+            background: radial-gradient(circle at 30% 30%, #66e0ff, #00d4ff, #004e92, #001a4d);
+            border: 5px solid #606060;
+            border-radius: 50%;
+            box-shadow: 
+                inset -6px -6px 12px rgba(0,0,0,0.6),
+                inset 4px 4px 8px rgba(255,255,255,0.4),
+                0 0 20px rgba(0, 212, 255, 0.9),
+                0 0 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .rocket-window::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            filter: blur(2px);
+        }
+
+        /* Второе окно */
+        .rocket-window-2 {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            left: 50%;
+            top: 170px;
+            transform: translateX(-50%);
+            background: radial-gradient(circle at 30% 30%, #66e0ff, #00d4ff, #004e92);
+            border: 4px solid #606060;
+            border-radius: 50%;
+            box-shadow: 
+                inset -4px -4px 8px rgba(0,0,0,0.6),
+                0 0 15px rgba(0, 212, 255, 0.7);
+        }
+
+        /* Полоса */
+        .rocket-stripe {
+            position: absolute;
+            width: 90px;
+            height: 18px;
+            left: 50%;
+            top: 220px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #8b0000, #cc0000, #ff3333, #cc0000, #8b0000);
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Вторая полоса */
+        .rocket-stripe-2 {
+            position: absolute;
+            width: 90px;
+            height: 8px;
+            left: 50%;
+            top: 250px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #1a1a1a, #404040, #1a1a1a);
+        }
+
+        /* Флажок */
+        .rocket-flag {
+            position: absolute;
+            width: 25px;
+            height: 18px;
+            left: 50%;
+            top: 140px;
+            transform: translateX(-50%);
+            background: 
+                linear-gradient(180deg, 
+                    #ffffff 0%, #ffffff 33%, 
+                    #0033aa 33%, #0033aa 66%, 
+                    #cc0000 66%, #cc0000 100%);
+            border: 1px solid rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Крылья */
+        .rocket-fin-left, .rocket-fin-right {
+            position: absolute;
+            width: 35px;
+            height: 80px;
+            bottom: 80px;
+            background: linear-gradient(90deg, #8b0000, #cc0000, #ff3333, #cc0000, #8b0000);
+            box-shadow: inset -4px 0 8px rgba(0,0,0,0.4), 0 0 15px rgba(255, 100, 100, 0.3);
+        }
+
+        .rocket-fin-left {
+            left: 50%;
+            transform: translateX(-105px);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        }
+
+        .rocket-fin-right {
+            left: 50%;
+            transform: translateX(70px);
+            clip-path: polygon(0 0, 100% 100%, 0 100%);
+        }
+
+        /* Центральное заднее крыло */
+        .rocket-fin-center {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, #cc0000, #8b0000);
+            box-shadow: 0 0 10px rgba(255, 100, 100, 0.4);
+        }
+
+        /* Двигатель */
+        .rocket-engine {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            left: 50%;
+            bottom: 50px;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, #404040, #202020, #000000);
+            border-radius: 5px 5px 15px 15px;
+            box-shadow: 
+                inset 0 -5px 10px rgba(255, 100, 0, 0.5),
+                0 0 15px rgba(255, 100, 0, 0.6);
+        }
+
+        .rocket-engine::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 15px;
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse, #ff6600, #ff3300, #8b0000);
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ff6600;
+        }
+
+        /* Пламя */
+        .rocket-flame {
+            position: absolute;
+            width: 80px;
+            height: 140px;
+            left: 50%;
+            bottom: -60px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at top, 
+                #ffffff 0%, 
+                #ffff00 15%, 
+                #ff8800 35%, 
+                #ff3300 60%, 
+                transparent 100%);
+            border-radius: 50% 50% 30% 30%;
+            animation: flameFlicker 0.15s infinite alternate;
+            filter: blur(3px);
+            box-shadow: 
+                0 0 60px #ff8800, 
+                0 0 120px #ff3300,
+                0 0 200px rgba(255, 100, 0, 0.5);
+        }
+
+        .rocket-flame::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at top, #ffffff 0%, #ffff00 30%, transparent 80%);
+            border-radius: 50%;
+        }
+
+        .rocket-flame::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            left: 50%;
+            bottom: -30px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at top, #ff3300 0%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(5px);
+        }
+
+        @keyframes flameFlicker {
+            0% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 1; }
+            100% { transform: translateX(-50%) scaleY(1.15) scaleX(0.85); opacity: 0.9; }
+        }
+
+        /* Частицы пламени */
+        .flame-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #ffff00, #ff8800);
+            border-radius: 50%;
+            left: 50%;
+            bottom: -80px;
+            animation: flameParticle 1s infinite;
+            box-shadow: 0 0 10px #ff8800;
+        }
+
+        .flame-particle:nth-child(1) { animation-delay: 0s; left: 45%; }
+        .flame-particle:nth-child(2) { animation-delay: 0.3s; left: 55%; }
+        .flame-particle:nth-child(3) { animation-delay: 0.6s; left: 50%; }
+
+        @keyframes flameParticle {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(100px) scale(0); opacity: 0; }
+        }
+
+        /* Антенна */
+        .rocket-antenna {
+            position: absolute;
+            width: 3px;
+            height: 30px;
+            left: 50%;
+            top: -40px;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, #c0c0c0, #808080);
+        }
+
+        .rocket-antenna::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ff0000, #8b0000);
+            border-radius: 50%;
+            top: -5px;
+            left: -3.5px;
+            box-shadow: 0 0 15px #ff0000;
+            animation: antennaBlink 1.5s infinite;
+        }
+
+        @keyframes antennaBlink {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; box-shadow: 0 0 25px #ff0000; }
+        }
+
+        /* ===== 3D КОСМОНАВТ - БОЛЬШЕ ДЕТАЛЕЙ, ТРУБКИ, ПРОЗРАЧНОЕ СТЕКЛО ===== */
+        .astronaut-3d {
+            position: relative;
+            width: 320px;
+            height: 450px;
+            transform-style: preserve-3d;
+            animation: astronautFloat 5s infinite ease-in-out;
+        }
+
+        @keyframes astronautFloat {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
+        }
+
+        /* Рюкзак сзади */
+        .astronaut-backpack {
+            position: absolute;
+            width: 110px;
+            height: 130px;
+            left: 50%;
+            top: 140px;
+            transform: translateX(-50%) translateZ(-30px);
+            background: linear-gradient(180deg, #d0d0d0 0%, #a0a0a0 50%, #707070 100%);
+            border-radius: 15px;
+            z-index: -1;
+            box-shadow: 
+                inset -8px 0 20px rgba(0,0,0,0.4),
+                inset 8px 0 20px rgba(255,255,255,0.2),
+                0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Детали рюкзака */
+        .astronaut-backpack::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 15px;
+            top: 20px;
+            left: 15px;
+            background: linear-gradient(90deg, #404040, #606060, #404040);
+            border-radius: 3px;
+            box-shadow: 
+                0 25px 0 #404040,
+                0 50px 0 #404040,
+                0 75px 0 #404040;
+        }
+
+        /* Шлем */
+        .astronaut-helmet {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            background: radial-gradient(circle at 30% 30%, #ffffff 0%, #e8e8e8 40%, #b0b0b0 80%, #808080 100%);
+            border-radius: 50%;
+            box-shadow: 
+                inset -15px -15px 30px rgba(0,0,0,0.4),
+                inset 15px 15px 30px rgba(255,255,255,0.6),
+                0 0 40px rgba(255, 255, 255, 0.4),
+                0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Визор - БОЛЕЕ ПРОЗРАЧНЫЙ, виднеется лицо */
+        .astronaut-visor {
+            position: absolute;
+            width: 105px;
+            height: 85px;
+            left: 50%;
+            top: 45px;
+            transform: translateX(-50%);
+            background: 
+                radial-gradient(ellipse at 30% 30%, 
+                    rgba(255, 215, 0, 0.3) 0%, 
+                    rgba(255, 140, 0, 0.25) 30%, 
+                    rgba(139, 69, 19, 0.3) 60%, 
+                    rgba(74, 37, 17, 0.4) 100%),
+                linear-gradient(135deg, 
+                    rgba(255, 215, 0, 0.2) 0%, 
+                    rgba(255, 140, 0, 0.15) 50%, 
+                    rgba(139, 69, 19, 0.25) 100%);
+            border-radius: 52px 52px 42px 42px;
+            border: 5px solid #505050;
+            box-shadow: 
+                inset -6px -6px 15px rgba(0,0,0,0.5),
+                inset 6px 6px 12px rgba(255,255,255,0.3),
+                0 0 25px rgba(255, 200, 0, 0.6),
+                0 0 50px rgba(255, 140, 0, 0.3);
+            overflow: hidden;
+            backdrop-filter: blur(1px);
+        }
+
+        /* Лицо за визором */
+        .astronaut-face {
+            position: absolute;
+            width: 85px;
+            height: 70px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse at 50% 40%, 
+                #ffdbac 0%, 
+                #f1c27d 50%, 
+                #d4a574 100%);
+            border-radius: 45% 45% 40% 40%;
+            z-index: 1;
+        }
+
+        /* Глаза */
+        .astronaut-face::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #2c1810 40%, #1a0f08 100%);
+            border-radius: 50%;
+            top: 28px;
+            left: 20px;
+            box-shadow: 33px 0 0 #2c1810;
+        }
+
+        /* Улыбка */
+        .astronaut-face::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 12px;
+            border: 2px solid #8b4513;
+            border-top: none;
+            border-radius: 0 0 25px 25px;
+            top: 48px;
+            left: 30px;
+        }
+
+        /* Блик на визоре */
+        .astronaut-visor::before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 22px;
+            top: 12px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            filter: blur(3px);
+            z-index: 2;
+        }
+
+        /* Второй блик */
+        .astronaut-visor::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            filter: blur(2px);
+            z-index: 2;
+        }
+
+        /* Тело */
+        .astronaut-body {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            left: 50%;
+            top: 140px;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, #ffffff 0%, #e8e8e8 40%, #c0c0c0 80%, #a0a0a0 100%);
+            border-radius: 35px;
+            box-shadow: 
+                inset -12px 0 25px rgba(0,0,0,0.3),
+                inset 12px 0 25px rgba(255,255,255,0.4),
+                0 0 30px rgba(255, 255, 255, 0.3),
+                0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Грудная панель */
+        .astronaut-chest-panel {
+            position: absolute;
+            width: 95px;
+            height: 75px;
+            left: 50%;
+            top: 165px;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #505050 0%, #303030 50%, #202020 100%);
+            border-radius: 12px;
+            border: 3px solid #707070;
+            box-shadow: 
+                inset -4px -4px 10px rgba(0,0,0,0.6),
+                inset 2px 2px 5px rgba(255,255,255,0.2),
+                0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Индикаторы на панели */
+        .astronaut-chest-panel::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ff6666, #cc0000);
+            border-radius: 50%;
+            top: 18px;
+            left: 18px;
+            box-shadow: 
+                0 0 12px #ff3333,
+                20px 0 0 #33ff33,
+                20px 0 12px #00ff00,
+                40px 0 0 #3399ff,
+                40px 0 12px #00d4ff;
+            animation: panelLights 2s infinite;
+        }
+
+        @keyframes panelLights {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .astronaut-chest-panel::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 8px;
+            background: linear-gradient(90deg, #00d4ff, #7b2ff7, #00d4ff);
+            border-radius: 4px;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px #00d4ff;
+            animation: panelScreen 3s infinite;
+        }
+
+        @keyframes panelScreen {
+            0%, 100% { background-position: 0% 50%; opacity: 0.8; }
+            50% { background-position: 100% 50%; opacity: 1; }
+        }
+
+        /* ===== ТРУБКИ И ШЛАНГИ ===== */
+        .astronaut-tube-1 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            left: 50%;
+            top: 180px;
+            transform: translateX(-115px);
+            border: 6px solid #404040;
+            border-radius: 50%;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            box-shadow: 
+                inset 0 0 5px rgba(0,0,0,0.5),
+                0 0 8px rgba(100, 100, 100, 0.5);
+        }
+
+        .astronaut-tube-2 {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            left: 50%;
+            top: 190px;
+            transform: translateX(35px);
+            border: 6px solid #404040;
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            box-shadow: 
+                inset 0 0 5px rgba(0,0,0,0.5),
+                0 0 8px rgba(100, 100, 100, 0.5);
+        }
+
+        .astronaut-tube-3 {
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            left: 50%;
+            top: 250px;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, #505050, #303030);
+            border-radius: 15px;
+            box-shadow: 
+                inset 0 3px 5px rgba(255,255,255,0.2),
+                inset 0 -3px 5px rgba(0,0,0,0.5),
+                0 0 10px rgba(100, 100, 100, 0.4);
+        }
+
+        /* Соединители трубок */
+        .astronaut-connector {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle, #c0c0c0, #808080);
+            border-radius: 50%;
+            border: 2px solid #404040;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        .astronaut-connector-1 { left: 50%; top: 175px; transform: translateX(-120px); }
+        .astronaut-connector-2 { left: 50%; top: 175px; transform: translateX(106px); }
+        .astronaut-connector-3 { left: 50%; top: 245px; transform: translateX(-55px); }
+        .astronaut-connector-4 { left: 50%; top: 245px; transform: translateX(41px); }
+
+        /* Кислородный шланг */
+        .astronaut-oxygen-hose {
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            left: 50%;
+            top: 90px;
+            transform: translateX(40px);
+            border: 5px solid #606060;
+            border-radius: 50%;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            box-shadow: 
+                inset 0 0 3px rgba(0,0,0,0.5),
+                0 0 6px rgba(150, 150, 150, 0.5);
+        }
+
+        /* Руки */
+        .astronaut-arm-left, .astronaut-arm-right {
+            position: absolute;
+            width: 40px;
+            height: 115px;
+            top: 150px;
+            background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 50%, #b0b0b0 100%);
+            border-radius: 22px;
+            box-shadow: 
+                inset -6px 0 12px rgba(0,0,0,0.3),
+                inset 6px 0 12px rgba(255,255,255,0.3),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .astronaut-arm-left {
+            left: 50%;
+            transform: translateX(-115px) rotate(12deg);
+        }
+
+        .astronaut-arm-right {
+            left: 50%;
+            transform: translateX(75px) rotate(-12deg);
+        }
+
+        /* Перчатки */
+        .astronaut-arm-left::after, .astronaut-arm-right::after {
+            content: '';
+            position: absolute;
+            width: 38px;
+            height: 30px;
+            bottom: -5px;
+            left: 1px;
+            background: radial-gradient(circle at 50% 30%, #e0e0e0, #a0a0a0);
+            border-radius: 50% 50% 40% 40%;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.4);
+        }
+
+        /* Соединения на руках */
+        .astronaut-arm-left::before, .astronaut-arm-right::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 6px;
+            top: 40px;
+            left: 5px;
+            background: linear-gradient(90deg, #808080, #c0c0c0, #808080);
+            border-radius: 3px;
+            box-shadow: 0 20px 0 #808080;
+        }
+
+        /* Ноги */
+        .astronaut-leg-left, .astronaut-leg-right {
+            position: absolute;
+            width: 45px;
+            height: 95px;
+            top: 290px;
+            background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 50%, #b0b0b0 100%);
+            border-radius: 18px;
+            box-shadow: 
+                inset -6px 0 12px rgba(0,0,0,0.3),
+                inset 6px 0 12px rgba(255,255,255,0.3),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .astronaut-leg-left {
+            left: 50%;
+            transform: translateX(-50px) rotate(4deg);
+        }
+
+        .astronaut-leg-right {
+            left: 50%;
+            transform: translateX(5px) rotate(-4deg);
+        }
+
+        /* Ботинки */
+        .astronaut-leg-left::after, .astronaut-leg-right::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 25px;
+            bottom: -8px;
+            left: -2px;
+            background: radial-gradient(ellipse at 50% 30%, #505050, #202020);
+            border-radius: 40% 40% 50% 50%;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.5);
+        }
+
+        /* Флаг на плече */
+        .astronaut-flag {
+            position: absolute;
+            width: 28px;
+            height: 20px;
+            left: 50%;
+            top: 150px;
+            transform: translateX(-95px);
+            background: 
+                linear-gradient(180deg, 
+                    #ffffff 0%, #ffffff 33%, 
+                    #0033aa 33%, #0033aa 66%, 
+                    #cc0000 66%, #cc0000 100%);
+            border: 1px solid rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        /* Антенна на шлеме */
+        .astronaut-antenna {
+            position: absolute;
+            width: 3px;
+            height: 25px;
+            left: 50%;
+            top: -5px;
+            transform: translateX(-40px);
+            background: linear-gradient(180deg, #c0c0c0, #808080);
+        }
+
+        .astronaut-antenna::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #00ff00, #008800);
+            border-radius: 50%;
+            top: -4px;
+            left: -2.5px;
+            box-shadow: 0 0 10px #00ff00;
+            animation: antennaBlink 1.5s infinite;
+        }
+
+        /* Секции */
+        .section { padding: 80px 20px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #00d4ff;
+            text-shadow: 0 0 25px rgba(0, 212, 255, 0.7), 0 0 50px rgba(0, 212, 255, 0.4);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #00d4ff, #7b2ff7, #00d4ff, transparent);
+            margin: 20px auto;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Счётчики */
+        .stats-counter-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(123, 47, 247, 0.08));
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-counter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; }
+
+        .counter-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(0, 10, 40, 0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+        }
+
+        .counter-item:hover { transform: translateY(-10px); border-color: #00d4ff; box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4); }
+
+        .counter-icon { font-size: 2.5em; margin-bottom: 10px; display: block; }
+        .counter-value { font-size: 2em; color: #00d4ff; font-weight: bold; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 20px rgba(0, 212, 255, 0.7); }
+        .counter-label { color: #c0e7ff; font-size: 0.95em; margin-top: 10px; }
+
+        /* Солнечная система */
+        .solar-system-section { padding: 80px 20px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .solar-system-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 900px;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sun-center {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffff00, #ff8800, #ff3300);
+            box-shadow: 0 0 80px #ff8800, 0 0 150px #ff3300;
+            animation: sunPulse 3s infinite ease-in-out;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        @keyframes sunPulse {
+            0%, 100% { box-shadow: 0 0 80px #ff8800, 0 0 150px #ff3300; }
+            50% { box-shadow: 0 0 100px #ffff00, 0 0 200px #ff8800; }
+        }
+
+        .orbit { position: absolute; border: 1px dashed rgba(255, 255, 255, 0.2); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        .orbit-planet { position: absolute; top: 50%; left: 50%; transform-origin: 0 0; animation-timing-function: linear; animation-iteration-count: infinite; }
+
+        .planet-dot { position: absolute; border-radius: 50%; cursor: pointer; transition: transform 0.3s; box-shadow: 0 0 12px currentColor; }
+        .planet-dot:hover { transform: scale(1.5); }
+
+        .planet-dot-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); color: #00d4ff; font-size: 0.75em; white-space: nowrap; margin-top: 5px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .planet-dot:hover .planet-dot-label { opacity: 1; }
+
+        .planet-speed-label { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); color: #ffc800; font-size: 0.7em; white-space: nowrap; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; font-weight: bold; text-shadow: 0 0 10px rgba(255, 200, 0, 0.9); pointer-events: none; opacity: 0.95; }
+        .planet-speed-label::before { content: '⚡ '; }
+
+        /* Планеты */
+        .planets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+
+        .planet-card {
+            background: rgba(0, 10, 40, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+        }
+
+        .planet-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), transparent); transition: left 0.5s; z-index: 1; }
+        .planet-card:hover::before { left: 100%; }
+        .planet-card:hover { transform: translateY(-10px); box-shadow: 0 15px 50px rgba(0, 212, 255, 0.4); border-color: #00d4ff; }
+
+        .planet-image { width: 100%; height: 260px; overflow: hidden; position: relative; background: radial-gradient(circle at center, rgba(0, 212, 255, 0.15), transparent); }
+        .planet-image img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s; }
+        .planet-card:hover .planet-image img { transform: scale(1.1) rotate(5deg); }
+
+        .planet-info-content { padding: 22px; position: relative; z-index: 2; }
+        .planet-name { font-size: 1.6em; color: #00d4ff; margin-bottom: 12px; }
+        .planet-info { line-height: 1.7; color: #d0f0ff; }
+        .planet-info strong { color: #b067ff; }
+        .click-hint { position: absolute; bottom: 8px; right: 12px; color: #00d4ff; font-size: 0.85em; opacity: 0.7; }
+
+        /* Космонавты */
+        .cosmonauts-timeline { display: flex; flex-direction: column; gap: 35px; margin-top: 40px; }
+
+        .cosmonaut-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(123, 47, 247, 0.15));
+            border: 2px solid rgba(0, 212, 255, 0.5);
+            border-radius: 25px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            align-items: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .cosmonaut-card:hover { transform: scale(1.02); box-shadow: 0 20px 70px rgba(0, 212, 255, 0.5); }
+
+        .cosmonaut-photo {
+            width: 100%;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(0, 212, 255, 0.5);
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cosmonaut-photo img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s; }
+        .cosmonaut-card:hover .cosmonaut-photo img { transform: scale(1.05); }
+
+        .cosmonaut-details h3 { font-size: 1.8em; color: #00d4ff; margin-bottom: 10px; }
+        .cosmonaut-details p { line-height: 1.6; color: #d0f0ff; margin-bottom: 12px; }
+
+        .achievement { background: rgba(0, 212, 255, 0.2); padding: 12px 20px; border-radius: 10px; margin: 12px 0; border-left: 4px solid #00d4ff; }
+        .achievement-date { color: #b067ff; font-weight: bold; font-size: 1em; }
+
+        /* Стань космонавтом */
+        .astronaut-maker-section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .astronaut-maker-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(123, 47, 247, 0.2), rgba(255, 107, 107, 0.15));
+            border: 2px solid rgba(0, 212, 255, 0.6);
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .astronaut-maker-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 200, 0, 0.08) 50%, transparent 70%);
+            animation: hologramShine 10s infinite;
+            pointer-events: none;
+        }
+
+        .astronaut-maker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+
+        .upload-area {
+            background: rgba(0, 10, 40, 0.5);
+            border: 3px dashed rgba(0, 212, 255, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .upload-area:hover { border-color: #00d4ff; background: rgba(0, 212, 255, 0.08); transform: translateY(-5px); }
+        .upload-area.has-image { border-style: solid; padding: 15px; }
+
+        .upload-icon { font-size: 4em; margin-bottom: 15px; animation: floatIcon 3s ease-in-out infinite; }
+        .upload-text { color: #00d4ff; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
+        .upload-hint { color: #c0e7ff; font-size: 0.9em; margin-bottom: 20px; }
+
+        .upload-btn {
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .upload-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.7); }
+        #photoInput { display: none; }
+
+        .preview-image { max-width: 100%; max-height: 280px; border-radius: 15px; object-fit: contain; }
+
+        .result-area {
+            background: rgba(0, 10, 40, 0.5);
+            border: 2px solid rgba(123, 47, 247, 0.6);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(123, 47, 247, 0.3);
+        }
+
+        .result-placeholder { color: #c0e7ff; font-size: 1.1em; padding: 40px 20px; }
+        .result-placeholder-icon { font-size: 4em; margin-bottom: 15px; opacity: 0.6; }
+
+        #resultCanvas { max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 50px rgba(0, 212, 255, 0.5); display: none; }
+
+        .maker-actions { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+
+        .maker-btn {
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .maker-btn.secondary { background: linear-gradient(135deg, #7b2ff7, #ff6b6b); }
+        .maker-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .maker-btn:not(:disabled):hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.7); }
+
+        .maker-tips {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 200, 0, 0.08);
+            border: 1px solid rgba(255, 200, 0, 0.4);
+            border-radius: 15px;
+            grid-column: 1 / -1;
+        }
+
+        .maker-tips h4 { color: #ffc800; margin-bottom: 12px; font-size: 1.1em; }
+        .maker-tips ul { list-style: none; color: #fff5d0; line-height: 1.8; }
+        .maker-tips li { padding-left: 25px; position: relative; }
+        .maker-tips li::before { content: '✨'; position: absolute; left: 0; }
+
+        /* Таймлайн */
+        .timeline-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .timeline { position: relative; margin-top: 40px; padding: 20px 0; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #00d4ff, #7b2ff7, #ff6b6b);
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+        }
+
+        .timeline-item { position: relative; width: 50%; padding: 20px 40px; margin-bottom: 30px; }
+        .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+        .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: #00d4ff;
+            border: 3px solid #7b2ff7;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #00d4ff;
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(odd)::before { right: -10px; }
+        .timeline-item:nth-child(even)::before { left: -10px; }
+
+        .timeline-content {
+            background: rgba(0, 10, 40, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .timeline-content:hover { transform: scale(1.03); border-color: #00d4ff; box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4); }
+        .timeline-year { color: #b067ff; font-size: 1.4em; font-weight: bold; font-family: 'Orbitron', sans-serif; margin-bottom: 8px; }
+        .timeline-title { color: #00d4ff; font-size: 1.1em; margin-bottom: 8px; }
+        .timeline-desc { color: #d0f0ff; line-height: 1.5; font-size: 0.95em; }
+
+        /* Калькулятор */
+        .weight-calculator { padding: 80px 20px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .calculator-box {
+            background: linear-gradient(135deg, rgba(123, 47, 247, 0.15), rgba(0, 212, 255, 0.15));
+            border: 2px solid rgba(123, 47, 247, 0.5);
+            border-radius: 25px;
+            padding: 35px;
+            margin-top: 40px;
+            box-shadow: 0 0 40px rgba(123, 47, 247, 0.3);
+        }
+
+        .calculator-input-group { display: flex; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; align-items: center; }
+        .calculator-input-group label { color: #00d4ff; font-size: 1.1em; font-weight: bold; }
+
+        .calculator-input-group input {
+            flex: 1;
+            min-width: 200px;
+            padding: 13px 18px;
+            background: rgba(0, 10, 40, 0.6);
+            border: 2px solid #00d4ff;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1em;
+            font-family: 'Orbitron', sans-serif;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .calculator-input-group input:focus { border-color: #7b2ff7; box-shadow: 0 0 25px rgba(123, 47, 247, 0.6); }
+
+        .weight-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
+
+        .weight-result-item {
+            background: rgba(0, 10, 40, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .weight-result-item:hover { transform: translateY(-5px); border-color: #00d4ff; box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4); }
+        .weight-planet-name { color: #00d4ff; font-weight: bold; font-size: 1em; margin-bottom: 8px; }
+        .weight-value { font-size: 1.5em; color: #b067ff; font-weight: bold; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px rgba(176, 103, 255, 0.6); }
+        .weight-unit { color: #c0e7ff; font-size: 0.85em; }
+
+        /* Викторина */
+        .quiz-section { padding: 80px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .quiz-box {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(123, 47, 247, 0.15));
+            border: 2px solid rgba(255, 107, 107, 0.5);
+            border-radius: 25px;
+            padding: 35px;
+            margin-top: 40px;
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .quiz-progress { display: flex; justify-content: space-between; margin-bottom: 20px; color: #c0e7ff; }
+        .quiz-question { font-size: 1.3em; color: #00d4ff; margin-bottom: 25px; line-height: 1.5; min-height: 70px; }
+        .quiz-options { display: grid; gap: 12px; }
+
+        .quiz-option {
+            background: rgba(0, 10, 40, 0.5);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            padding: 15px 22px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .quiz-option:hover { border-color: #00d4ff; background: rgba(0, 212, 255, 0.15); transform: translateX(10px); }
+        .quiz-option.correct { background: rgba(0, 255, 100, 0.25); border-color: #00ff64; color: #00ff64; }
+        .quiz-option.wrong { background: rgba(255, 107, 107, 0.25); border-color: #ff6b6b; color: #ff6b6b; }
+        .quiz-option:disabled { cursor: not-allowed; }
+
+        .quiz-score { text-align: center; padding: 25px; background: rgba(0, 10, 40, 0.5); border-radius: 20px; margin-top: 20px; }
+        .quiz-score-value { font-size: 2.5em; color: #00d4ff; font-weight: bold; font-family: 'Orbitron', sans-serif; }
+
+        .quiz-btn {
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            border: none;
+            color: white;
+            padding: 13px 35px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .quiz-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.7); }
+
+        /* Галактики */
+        .galaxies-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; margin-top: 40px; }
+
+        .galaxy-card {
+            background: rgba(0, 10, 40, 0.5);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 2px solid rgba(123, 47, 247, 0.5);
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(123, 47, 247, 0.3);
+        }
+
+        .galaxy-card:hover { transform: translateY(-10px); box-shadow: 0 30px 70px rgba(123, 47, 247, 0.5); }
+
+        .galaxy-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(123, 47, 247, 0.25), transparent);
+        }
+
+        .galaxy-image img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s; }
+        .galaxy-card:hover .galaxy-image img { transform: scale(1.1); }
+
+        .galaxy-image::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(123, 47, 247, 0.4) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            top: -50%;
+            left: -50%;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .galaxy-content { padding: 25px; }
+        .galaxy-content h3 { font-size: 1.6em; color: #b067ff; margin-bottom: 12px; }
+        .galaxy-content p { line-height: 1.6; color: #d0f0ff; }
+
+        /* Жизнь */
+        .life-probability { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+
+        .life-card {
+            background: rgba(0, 255, 100, 0.08);
+            border: 2px solid rgba(0, 255, 100, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .life-card:hover { background: rgba(0, 255, 100, 0.15); transform: translateY(-5px); box-shadow: 0 15px 50px rgba(0, 255, 100, 0.3); }
+        .life-card h3 { color: #00ff64; font-size: 1.3em; margin-bottom: 12px; }
+        .life-card p { line-height: 1.6; color: #d0ffd8; margin-bottom: 12px; }
+
+        .probability-bar { width: 100%; height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; margin: 15px 0; overflow: hidden; }
+
+        .probability-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff64, #00d4ff);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease-out;
+            box-shadow: 0 0 15px rgba(0, 255, 100, 0.7);
+        }
+
+        .evidence-list { list-style: none; margin-top: 12px; }
+        .evidence-list li { padding: 6px 0; padding-left: 28px; position: relative; color: #d0ffd8; }
+        .evidence-list li::before { content: '🔬'; position: absolute; left: 0; }
+
+        /* Звезды */
+        .stars-info {
+            background: rgba(255, 200, 0, 0.08);
+            border: 2px solid rgba(255, 200, 0, 0.4);
+            border-radius: 25px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 0 40px rgba(255, 200, 0, 0.2);
+        }
+
+        .star-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 25px; }
+
+        .star-fact {
+            background: rgba(0, 10, 40, 0.5);
+            padding: 22px;
+            border-radius: 15px;
+            border-left: 4px solid #ffc800;
+            transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 200, 0, 0.15);
+        }
+
+        .star-fact:hover { transform: translateX(10px); }
+
+        .star-fact-image { width: 100%; height: 160px; border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: radial-gradient(circle, rgba(255, 200, 0, 0.15), transparent); }
+        .star-fact-image img { width: 100%; height: 100%; object-fit: contain; }
+        .star-fact h4 { color: #ffc800; font-size: 1.2em; margin-bottom: 8px; }
+        .star-fact p { color: #fff5d0; line-height: 1.5; }
+
+        /* Отзывы */
+        .reviews-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .reviews-overview {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            background: linear-gradient(135deg, rgba(255, 200, 0, 0.1), rgba(123, 47, 247, 0.1));
+            border: 2px solid rgba(255, 200, 0, 0.5);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+            box-shadow: 0 0 40px rgba(255, 200, 0, 0.2);
+        }
+
+        .reviews-summary {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 10, 40, 0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 200, 0, 0.4);
+        }
+
+        .reviews-avg-value { font-size: 3.5em; color: #ffc800; font-weight: bold; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 25px rgba(255, 200, 0, 0.7); line-height: 1; margin-bottom: 10px; }
+        .reviews-avg-stars { font-size: 1.8em; margin-bottom: 10px; letter-spacing: 5px; }
+        .reviews-total-count { color: #c0e7ff; font-size: 1em; margin-top: 10px; }
+        .reviews-total-count strong { color: #00d4ff; font-size: 1.2em; }
+
+        .reviews-distribution { display: flex; flex-direction: column; gap: 8px; }
+        .distribution-row { display: grid; grid-template-columns: 80px 1fr 50px; gap: 12px; align-items: center; color: #d0f0ff; }
+        .distribution-label { display: flex; align-items: center; gap: 5px; font-size: 0.9em; }
+        .distribution-bar { height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; }
+
+        .distribution-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffc800, #ff8800);
+            border-radius: 5px;
+            transition: width 1s ease-out;
+            box-shadow: 0 0 10px rgba(255, 200, 0, 0.6);
+        }
+
+        .distribution-count { text-align: right; color: #c0e7ff; font-size: 0.85em; }
+
+        .review-form-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(123, 47, 247, 0.15));
+            border: 2px solid rgba(0, 212, 255, 0.5);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .review-form-title { font-size: 1.6em; color: #00d4ff; margin-bottom: 20px; text-align: center; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; color: #00d4ff; font-weight: bold; margin-bottom: 8px; font-size: 1em; }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 13px 18px;
+            background: rgba(0, 10, 40, 0.6);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            color: white;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: all 0.3s;
+            resize: vertical;
+        }
+
+        .form-group input:focus, .form-group textarea:focus { border-color: #00d4ff; box-shadow: 0 0 25px rgba(0, 212, 255, 0.4); background: rgba(0, 10, 40, 0.8); }
+        .form-group textarea { min-height: 100px; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(192, 231, 255, 0.5); }
+
+        .char-counter { text-align: right; color: #c0e7ff; font-size: 0.85em; margin-top: 5px; }
+        .char-counter.warning { color: #ff8800; }
+        .char-counter.error { color: #ff6b6b; }
+
+        .star-rating { display: flex; gap: 8px; justify-content: center; margin: 15px 0; direction: rtl; }
+        .star-rating input { display: none; }
+
+        .star-rating label {
+            font-size: 2.5em;
+            color: #444;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-shadow: 0 0 5px rgba(255, 200, 0, 0.3);
+            margin: 0;
+        }
+
+        .star-rating label:hover, .star-rating label:hover ~ label, .star-rating input:checked ~ label {
+            color: #ffc800;
+            text-shadow: 0 0 25px rgba(255, 200, 0, 0.9);
+            transform: scale(1.15);
+        }
+
+        .rating-text { text-align: center; color: #ffc800; font-size: 1em; min-height: 1.5em; margin-top: 8px; font-weight: bold; }
+
+        .submit-review-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            border: none;
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .submit-review-btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0, 212, 255, 0.7); }
+        .submit-review-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.95), rgba(123, 47, 247, 0.95));
+            color: white;
+            padding: 18px 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px rgba(0, 212, 255, 0.6);
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 320px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .notification.show { transform: translateX(0); }
+        .notification.error { background: linear-gradient(135deg, rgba(255, 107, 107, 0.95), rgba(200, 50, 50, 0.95)); }
+        .notification.success { background: linear-gradient(135deg, rgba(0, 255, 100, 0.95), rgba(0, 180, 80, 0.95)); }
+        .notification-title { font-weight: bold; font-size: 1em; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; }
+        .notification-message { font-size: 0.9em; line-height: 1.4; }
+
+        .reviews-list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+        .reviews-list-title { font-size: 1.5em; color: #00d4ff; }
+        .reviews-sort { display: flex; gap: 10px; align-items: center; }
+        .reviews-sort label { color: #c0e7ff; }
+
+        .reviews-sort select {
+            background: rgba(0, 10, 40, 0.6);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            color: white;
+            padding: 7px 12px;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .reviews-sort select:focus { border-color: #00d4ff; }
+        .reviews-list { display: grid; gap: 18px; }
+
+        .review-card {
+            background: rgba(0, 10, 40, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 20px;
+            padding: 22px;
+            transition: all 0.3s;
+            animation: reviewAppear 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes reviewAppear {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .review-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #ffc800, #ff8800); }
+        .review-card:hover { transform: translateX(5px); border-color: #ffc800; box-shadow: 0 10px 40px rgba(255, 200, 0, 0.3); }
+
+        .review-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+        .review-author-info { display: flex; align-items: center; gap: 12px; }
+
+        .review-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+            flex-shrink: 0;
+        }
+
+        .review-author-name { color: #00d4ff; font-size: 1.1em; font-weight: bold; margin-bottom: 2px; }
+        .review-date { color: #c0e7ff; font-size: 0.8em; }
+        .review-stars { font-size: 1.2em; color: #ffc800; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 200, 0, 0.7); }
+        .review-text { color: #d0f0ff; line-height: 1.6; font-size: 1em; white-space: pre-wrap; word-wrap: break-word; }
+
+        .review-actions { display: flex; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0, 212, 255, 0.3); }
+
+        .review-action-btn {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            color: #00d4ff;
+            padding: 5px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .review-action-btn:hover { background: rgba(0, 212, 255, 0.25); transform: translateY(-2px); }
+        .review-action-btn.liked { background: rgba(255, 107, 107, 0.25); border-color: #ff6b6b; color: #ff6b6b; }
+        .review-action-btn.delete-btn:hover { background: rgba(255, 107, 107, 0.25); border-color: #ff6b6b; color: #ff6b6b; }
+
+        .empty-reviews { text-align: center; padding: 50px 20px; background: rgba(0, 10, 40, 0.5); border-radius: 20px; border: 2px dashed rgba(0, 212, 255, 0.4); }
+        .empty-reviews-icon { font-size: 3.5em; margin-bottom: 15px; opacity: 0.6; }
+        .empty-reviews-text { color: #c0e7ff; font-size: 1.1em; margin-bottom: 8px; }
+        .empty-reviews-subtext { color: rgba(192, 231, 255, 0.7); font-size: 0.9em; }
+
+        /* Подвал */
+        footer {
+            background: rgba(0, 5, 30, 0.9);
+            text-align: center;
+            padding: 35px 20px;
+            margin-top: 80px;
+            border-top: 2px solid #00d4ff;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 -10px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .footer-text { color: #00d4ff; font-size: 1.1em; }
+
+        /* Модальные окна */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); overflow-y: auto; }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(0, 10, 60, 0.97), rgba(0, 78, 146, 0.97));
+            margin: 50px auto;
+            padding: 35px;
+            border: 2px solid #00d4ff;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            box-shadow: 0 0 100px rgba(0, 212, 255, 0.6);
+            animation: modalSlideIn 0.5s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .close { color: #00d4ff; position: absolute; right: 25px; top: 15px; font-size: 32px; font-weight: bold; cursor: pointer; transition: all 0.3s; z-index: 10; }
+        .close:hover { color: #fff; transform: rotate(90deg) scale(1.2); text-shadow: 0 0 25px #00d4ff; }
+
+        .modal-header { text-align: center; margin-bottom: 25px; }
+        .modal-header h2 { font-size: 2.2em; color: #00d4ff; margin-bottom: 10px; }
+
+        .modal-image {
+            width: 100%;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 50px rgba(0, 212, 255, 0.5);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .modal-body { color: #d0f0ff; line-height: 1.7; }
+        .modal-body h3 { color: #b067ff; font-size: 1.6em; margin: 20px 0 12px; border-bottom: 2px solid rgba(176, 103, 255, 0.4); padding-bottom: 8px; }
+        .modal-body p { margin-bottom: 12px; font-size: 1.05em; }
+        .modal-body ul { margin: 12px 0; padding-left: 25px; }
+        .modal-body li { margin-bottom: 8px; color: #c0e7ff; }
+
+        .fact-box { background: rgba(0, 212, 255, 0.15); border-left: 4px solid #00d4ff; padding: 18px; margin: 18px 0; border-radius: 10px; }
+        .fact-box strong { color: #00d4ff; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+
+        .stat-item { background: rgba(123, 47, 247, 0.15); padding: 18px; border-radius: 15px; text-align: center; border: 1px solid rgba(123, 47, 247, 0.4); }
+        .stat-value { font-size: 1.7em; color: #00d4ff; font-weight: bold; margin-bottom: 5px; }
+        .stat-label { color: #c0e7ff; font-size: 0.85em; }
+
+        .glow-effect { position: fixed; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: 9999; transition: opacity 0.3s; opacity: 0; }
+        body:hover .glow-effect { opacity: 1; }
+
+        .particle { position: fixed; width: 5px; height: 5px; background: #00d4ff; border-radius: 50%; pointer-events: none; z-index: 1; box-shadow: 0 0 15px #00d4ff; animation: particleFloat 15s linear infinite; }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+
+        .click-particle { position: fixed; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; z-index: 9998; animation: clickParticle 1s ease-out forwards; }
+
+        @keyframes clickParticle {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0) translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 2.8em; }
+            .astronaut-maker-grid { grid-template-columns: 1fr; }
+            .reviews-overview { grid-template-columns: 1fr; }
+            .scene-3d-object { width: 280px; height: 400px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2em; }
+            .hero-subtitle { font-size: 1em; }
+            .section-title { font-size: 1.7em; }
+            .section { padding: 60px 15px; }
+            .hologram-content { padding: 30px 20px; border-radius: 20px; }
+            
+            .hero-3d-scene { gap: 15px; }
+            .scene-3d-object { width: 240px; height: 360px; }
+            .earth-3d, .astronaut-3d, .rocket-3d { transform: scale(0.75); }
+            
+            nav { padding: 12px 5px; }
+            nav ul { gap: 10px; }
+            nav a { font-size: 9px; letter-spacing: 0.5px; }
+            
+            .cosmonaut-card { grid-template-columns: 1fr; padding: 20px; }
+            .cosmonaut-photo { height: 280px; }
+            
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 100% !important; left: 0 !important; text-align: left !important; padding-left: 50px; padding-right: 15px; }
+            .timeline-item::before { left: 10px !important; right: auto !important; }
+            
+            .solar-system-container { height: 500px; }
+            .sun-center { width: 50px; height: 50px; }
+            
+            .stars-info { padding: 25px 15px; }
+            .calculator-box { padding: 25px 15px; }
+            .quiz-box { padding: 25px 15px; }
+            .astronaut-maker-box { padding: 25px 15px; }
+            .review-form-box { padding: 25px 15px; }
+            
+            .modal-content { padding: 20px; margin: 20px auto; }
+            .modal-header h2 { font-size: 1.6em; }
+            .modal-image { height: 220px; }
+            
+            .hero-facts-carousel { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+            .hero-fact-card { padding: 15px 10px; }
+            .hero-fact-icon { font-size: 2em; }
+            .hero-fact-value { font-size: 1.2em; }
+            .hero-fact-title { font-size: 0.9em; }
+            .hero-fact-desc { font-size: 0.75em; }
+            
+            .countdown-section { padding: 20px 15px; }
+            .countdown-title { font-size: 1.1em; }
+            .countdown-event { font-size: 0.95em; }
+            .countdown-item { padding: 12px 10px; min-width: 70px; }
+            .countdown-value { font-size: 1.6em; }
+            .countdown-label { font-size: 0.7em; }
+            .countdown-timer { gap: 8px; }
+            
+            .upload-area { padding: 20px 15px; min-height: 280px; }
+            .upload-icon { font-size: 3em; }
+            .upload-text { font-size: 1em; }
+            
+            .star-rating label { font-size: 2em; }
+            .reviews-avg-value { font-size: 2.8em; }
+            .review-card-header { flex-direction: column; }
+            
+            .notification { right: 10px; left: 10px; max-width: none; top: 80px; }
+            
+            .scroll-top-btn { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+            .scroll-top-btn::before { font-size: 22px; }
+            
+            .planets-grid { grid-template-columns: 1fr; }
+            .planet-image { height: 220px; }
+            
+            .galaxies-container { grid-template-columns: 1fr; }
+            .galaxy-image { height: 220px; }
+            
+            .stats-counter-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .counter-item { padding: 18px 10px; }
+            .counter-icon { font-size: 2em; }
+            .counter-value { font-size: 1.5em; }
+            .counter-label { font-size: 0.8em; }
+            
+            .weight-results { grid-template-columns: repeat(2, 1fr); }
+
+            .ufo { width: 80px; height: 40px; }
+            .ufo-dome { width: 40px; height: 28px; top: -10px; }
+            .ufo-body { height: 22px; top: 10px; }
+            .ufo-beam { width: 50px; height: 100px; top: 30px; }
+            .ufo-light { width: 6px; height: 6px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.6em; }
+            .hero-subtitle { font-size: 0.95em; }
+            .section-title { font-size: 1.4em; margin-bottom: 30px; }
+            
+            nav ul { gap: 8px; }
+            nav a { font-size: 8px; }
+            
+            .scene-3d-object { width: 200px; height: 320px; }
+            .earth-3d, .astronaut-3d, .rocket-3d { transform: scale(0.6); }
+            
+            .hero-facts-carousel { grid-template-columns: 1fr 1fr; }
+            .stats-counter-grid { grid-template-columns: 1fr 1fr; }
+            
+            .solar-system-container { height: 380px; }
+            .sun-center { width: 40px; height: 40px; }
+            
+            .cosmonaut-details h3 { font-size: 1.4em; }
+            
+            .quiz-question { font-size: 1.1em; }
+            .quiz-option { padding: 12px 15px; font-size: 0.95em; }
+            
+            .distribution-row { grid-template-columns: 70px 1fr 40px; font-size: 0.85em; }
+
+            .ufo { width: 60px; height: 30px; }
+            .ufo-dome { width: 30px; height: 20px; }
+            .ufo-body { height: 16px; top: 8px; }
+            .ufo-beam { display: none; }
+        }
+
+        @media (max-height: 700px) and (max-width: 768px) {
+            .hero { padding: 100px 15px 40px; }
+            .scene-3d-object { width: 180px; height: 280px; }
+            .earth-3d, .astronaut-3d, .rocket-3d { transform: scale(0.5); }
+        }
+    </style>
+</head>
+<body>
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()"></button>
+
+    <div class="stars" id="stars"></div>
+    
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+    <div class="nebula nebula-4"></div>
+
+    <!-- ЛЕТАЮЩЕЕ НЛО -->
+    <div class="ufo">
+        <div class="ufo-dome"></div>
+        <div class="ufo-body"></div>
+        <div class="ufo-lights">
+            <div class="ufo-light"></div>
+            <div class="ufo-light"></div>
+            <div class="ufo-light"></div>
+            <div class="ufo-light"></div>
+            <div class="ufo-light"></div>
+        </div>
+        <div class="ufo-beam"></div>
+    </div>
+
+    <div class="glow-effect" id="glowEffect"></div>
+
+    <div class="notification" id="notification">
+        <div class="notification-title" id="notificationTitle"></div>
+        <div class="notification-message" id="notificationMessage"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#solar-system">Солнечная система</a></li>
+            <li><a href="#planets">Планеты</a></li>
+            <li><a href="#cosmonauts">Космонавты</a></li>
+            <li><a href="#astronaut-maker">Стань космонавтом</a></li>
+            <li><a href="#timeline">Хронология</a></li>
+            <li><a href="#calculator">Калькулятор</a></li>
+            <li><a href="#quiz">Викторина</a></li>
+            <li><a href="#stars">Звезды</a></li>
+            <li><a href="#galaxies">Галактики</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hologram-container" id="hologramContainer">
+            <div class="hologram-content">
+                <h1 class="hero-title">🌌 ВСЕЛЕННАЯ И КОСМОС 🌌</h1>
+                <p class="hero-subtitle" id="typedText"></p>
+                
+                <div class="hero-facts-carousel">
+                    <div class="hero-fact-card" onclick="openModal('sun')">
+                        <span class="hero-fact-icon">☀️</span>
+                        <div class="hero-fact-title">Солнце</div>
+                        <div class="hero-fact-value">15 млн °C</div>
+                        <div class="hero-fact-desc">Температура ядра</div>
+                    </div>
+                    <div class="hero-fact-card" onclick="openModal('blackhole')">
+                        <span class="hero-fact-icon">⚫</span>
+                        <div class="hero-fact-title">Чёрные дыры</div>
+                        <div class="hero-fact-value">∞</div>
+                        <div class="hero-fact-desc">Плотность в центре</div>
+                    </div>
+                    <div class="hero-fact-card" onclick="openModal('milkyway')">
+                        <span class="hero-fact-icon">🌌</span>
+                        <div class="hero-fact-title">Млечный Путь</div>
+                        <div class="hero-fact-value">400 млрд</div>
+                        <div class="hero-fact-desc">Звёзд в галактике</div>
+                    </div>
+                    <div class="hero-fact-card" onclick="openModal('neutron')">
+                        <span class="hero-fact-icon">✨</span>
+                        <div class="hero-fact-title">Нейтронная звезда</div>
+                        <div class="hero-fact-value">1 млрд т</div>
+                        <div class="hero-fact-desc">Вес чайной ложки</div>
+                    </div>
+                </div>
+
+                <div class="countdown-section">
+                    <div class="countdown-title">🚀 До следующего космического события</div>
+                    <div class="countdown-event" id="countdownEvent">Загрузка...</div>
+                    <div class="countdown-timer">
+                        <div class="countdown-item"><div class="countdown-value" id="cd-days">00</div><div class="countdown-label">Дней</div></div>
+                        <div class="countdown-item"><div class="countdown-value" id="cd-hours">00</div><div class="countdown-label">Часов</div></div>
+                        <div class="countdown-item"><div class="countdown-value" id="cd-minutes">00</div><div class="countdown-label">Минут</div></div>
+                        <div class="countdown-item"><div class="countdown-value" id="cd-seconds">00</div><div class="countdown-label">Секунд</div></div>
+                    </div>
+                </div>
+
+                <div class="hero-3d-scene">
+                    <!-- КОСМОНАВТ -->
+                    <div class="scene-3d-object">
+                        <div class="astronaut-3d">
+                            <div class="astronaut-backpack"></div>
+                            <div class="astronaut-oxygen-hose"></div>
+                            <div class="astronaut-tube-1"></div>
+                            <div class="astronaut-tube-2"></div>
+                            <div class="astronaut-tube-3"></div>
+                            <div class="astronaut-connector astronaut-connector-1"></div>
+                            <div class="astronaut-connector astronaut-connector-2"></div>
+                            <div class="astronaut-connector astronaut-connector-3"></div>
+                            <div class="astronaut-connector astronaut-connector-4"></div>
+                            <div class="astronaut-helmet"></div>
+                            <div class="astronaut-visor">
+                                <div class="astronaut-face"></div>
+                            </div>
+                            <div class="astronaut-antenna"></div>
+                            <div class="astronaut-body"></div>
+                            <div class="astronaut-chest-panel"></div>
+                            <div class="astronaut-flag"></div>
+                            <div class="astronaut-arm-left"></div>
+                            <div class="astronaut-arm-right"></div>
+                            <div class="astronaut-leg-left"></div>
+                            <div class="astronaut-leg-right"></div>
+                            <div class="astronaut-label">👨‍🚀 КОСМОНАВТ</div>
+                        </div>
+                    </div>
+
+                    <!-- ЗЕМЛЯ -->
+                    <div class="scene-3d-object">
+                        <div class="earth-3d">
+                            <div class="earth-outer-glow"></div>
+                            <div class="earth-atmosphere"></div>
+                            <div class="earth-sphere"></div>
+                            <div class="earth-highlight"></div>
+                            <div class="earth-moon-orbit"></div>
+                            <div class="earth-moon"></div>
+                            <div class="earth-satellite"></div>
+                            <div class="earth-satellite-2"></div>
+                            <div class="earth-label">🌍 ЗЕМЛЯ</div>
+                        </div>
+                    </div>
+
+                    <!-- РАКЕТА -->
+                    <div class="scene-3d-object">
+                        <div class="rocket-3d">
+                            <div class="rocket-antenna"></div>
+                            <div class="rocket-nose"></div>
+                            <div class="rocket-body"></div>
+                            <div class="rocket-window"></div>
+                            <div class="rocket-window-2"></div>
+                            <div class="rocket-flag"></div>
+                            <div class="rocket-stripe"></div>
+                            <div class="rocket-stripe-2"></div>
+                            <div class="rocket-fin-left"></div>
+                            <div class="rocket-fin-right"></div>
+                            <div class="rocket-fin-center"></div>
+                            <div class="rocket-engine"></div>
+                            <div class="rocket-flame"></div>
+                            <div class="flame-particle"></div>
+                            <div class="flame-particle"></div>
+                            <div class="flame-particle"></div>
+                            <div class="rocket-label">🚀 РАКЕТА</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-counter-section">
+        <div class="stats-counter-grid">
+            <div class="counter-item"><span class="counter-icon">🌌</span><div class="counter-value" data-target="2000000000000" data-suffix="">0</div><div class="counter-label">Галактик во Вселенной</div></div>
+            <div class="counter-item"><span class="counter-icon">⭐</span><div class="counter-value" data-target="200" data-suffix=" млрд">0</div><div class="counter-label">Звёзд в Млечном Пути</div></div>
+            <div class="counter-item"><span class="counter-icon">🪐</span><div class="counter-value" data-target="5500" data-suffix="+">0</div><div class="counter-label">Открытых экзопланет</div></div>
+            <div class="counter-item"><span class="counter-icon">🚀</span><div class="counter-value" data-target="600" data-suffix="+">0</div><div class="counter-label">Людей в космосе</div></div>
+            <div class="counter-item"><span class="counter-icon">🌡️</span><div class="counter-value" data-target="15" data-suffix=" млн °C">0</div><div class="counter-label">Температура ядра Солнца</div></div>
+            <div class="counter-item"><span class="counter-icon">⚡</span><div class="counter-value" data-target="299792" data-suffix=" км/с">0</div><div class="counter-label">Скорость света</div></div>
+        </div>
+    </section>
+
+    <section class="solar-system-section" id="solar-system">
+        <h2 class="section-title">☀️ Интерактивная Солнечная система</h2>
+        <p style="text-align: center; color: #c0e7ff; font-size: 1.1em; margin-bottom: 20px;">⚡ Над каждой планетой — её орбитальная скорость. Нажмите для подробностей!</p>
+        <div class="solar-system-container" id="solarSystem">
+            <div class="sun-center" onclick="openModal('sun')" title="Солнце"></div>
+        </div>
+    </section>
+
+    <section class="section" id="planets">
+        <h2 class="section-title">🪐 Планеты Солнечной системы</h2>
+        <div class="planets-grid">
+            <div class="planet-card" onclick="openModal('mercury')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1578e5803-0f84-4385-9c75-bf3099ca867a.png" alt="Меркурий"></div><div class="planet-info-content"><h3 class="planet-name">Меркурий</h3><p class="planet-info">Самая близкая к Солнцу планета. <strong>Температура:</strong> от -180°C до +430°C. <strong>Диаметр:</strong> 4 879 км.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+            <div class="planet-card" onclick="openModal('venus')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/133119403-9649-45f5-9c3f-cb92df73ba76.png" alt="Венера"></div><div class="planet-info-content"><h3 class="planet-name">Венера</h3><p class="planet-info">Самая горячая планета. <strong>Температура:</strong> +462°C. <strong>Атмосфера:</strong> 96% углекислого газа.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+            <div class="planet-card" onclick="openModal('earth')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/15fe17c5b-881f-4478-b505-a40e2d1d9cfc.png" alt="Земля"></div><div class="planet-info-content"><h3 class="planet-name">Земля</h3><p class="planet-info">Наш дом — единственная известная планета с жизнью. <strong>Возраст:</strong> 4,5 млрд лет. <strong>Вода:</strong> 71% поверхности.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+            <div class="planet-card" onclick="openModal('mars')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1cb45adb0-8010-44be-a7ac-e1021b644109.png" alt="Марс"></div><div class="planet-info-content"><h3 class="planet-name">Марс</h3><p class="planet-info">Красная планета — цель будущей колонизации. <strong>Гора Олимп:</strong> 21,9 км. <strong>Спутники:</strong> Фобос и Деймос.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+            <div class="planet-card" onclick="openModal('jupiter')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/179527ac5-de4d-42ba-a2cc-31079ed7e35e.png" alt="Юпитер"></div><div class="planet-info-content"><h3 class="planet-name">Юпитер</h3><p class="planet-info">Крупнейшая планета. <strong>Масса:</strong> в 318 раз больше Земли. <strong>Большое Красное Пятно:</strong> шторм 350+ лет.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+            <div class="planet-card" onclick="openModal('saturn')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/163feed03-e709-446d-9c3b-4aea471915cd.png" alt="Сатурн"></div><div class="planet-info-content"><h3 class="planet-name">Сатурн</h3><p class="planet-info">Планета с великолепными кольцами. <strong>Плотность:</strong> меньше воды — он бы плавал! <strong>Спутников:</strong> более 140.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+            <div class="planet-card" onclick="openModal('uranus')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/10932e1ca-5366-48ef-8ecd-61caf8198edb.png" alt="Уран"></div><div class="planet-info-content"><h3 class="planet-name">Уран</h3><p class="planet-info">Ледяной гигант, вращающийся "на боку". <strong>Наклон оси:</strong> 98°. <strong>Температура:</strong> -224°C.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+            <div class="planet-card" onclick="openModal('neptune')"><div class="planet-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1b71fbe75-03ad-448a-87a9-b428aec11b16.png" alt="Нептун"></div><div class="planet-info-content"><h3 class="planet-name">Нептун</h3><p class="planet-info">Самая далёкая планета. <strong>Ветры:</strong> до 2 100 км/ч. <strong>Год:</strong> 165 земных лет.</p><span class="click-hint">👆 Нажмите для подробностей</span></div></div>
+        </div>
+    </section>
+
+    <section class="section" id="cosmonauts">
+        <h2 class="section-title">👨‍🚀 Легендарные космонавты</h2>
+        <div class="cosmonauts-timeline">
+            <div class="cosmonaut-card" onclick="openModal('gagarin')"><div class="cosmonaut-photo"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1200f672f-8440-4463-b193-44e7b35e79bf.png" alt="Гагарин"></div><div class="cosmonaut-details"><h3>Юрий Алексеевич Гагарин</h3><p>Первый человек, совершивший полёт в космос. Его исторический полёт на корабле "Восток-1" открыл эру пилотируемой космонавтики.</p><div class="achievement"><div class="achievement-date">12 апреля 1961</div><p>Первый полёт человека в космос. Длительность: 108 минут.</p></div></div></div>
+            <div class="cosmonaut-card" onclick="openModal('tereshkova')"><div class="cosmonaut-photo"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/11a572c2c-6ebd-440c-9f7c-5cc7f413dacf.png" alt="Терешкова"></div><div class="cosmonaut-details"><h3>Валентина Владимировна Терешкова</h3><p>Первая в мире женщина-космонавт. Её полёт доказал, что космос доступен всем, независимо от пола.</p><div class="achievement"><div class="achievement-date">16 июня 1963</div><p>Полёт на корабле "Восток-6". Позывной — "Чайка". 48 витков вокруг Земли.</p></div></div></div>
+            <div class="cosmonaut-card" onclick="openModal('leonov')"><div class="cosmonaut-photo"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1e43628ae-9a5f-45d1-8d31-3c19ea03de4f.png" alt="Леонов"></div><div class="cosmonaut-details"><h3>Алексей Архипович Леонов</h3><p>Первый человек, вышедший в открытое космическое пространство. Пионер внекорабельной деятельности.</p><div class="achievement"><div class="achievement-date">18 марта 1965</div><p>Первый выход в открытый космос с корабля "Восход-2". Нахождение за бортом: 12 минут 9 секунд.</p></div></div></div>
+            <div class="cosmonaut-card" onclick="openModal('armstrong')"><div class="cosmonaut-photo"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/16d9d63c8-8566-4614-b61f-ef3ba693dda0.png" alt="Армстронг"></div><div class="cosmonaut-details"><h3>Нил Армстронг</h3><p>Американский астронавт, первый человек, ступивший на поверхность Луны в рамках миссии Apollo 11.</p><div class="achievement"><div class="achievement-date">20 июля 1969</div><p>"Маленький шаг для человека, но гигантский скачок для всего человечества".</p></div></div></div>
+        </div>
+    </section>
+
+    <section class="astronaut-maker-section" id="astronaut-maker">
+        <h2 class="section-title">🚀 Стань космонавтом!</h2>
+        <p style="text-align: center; color: #c0e7ff; font-size: 1.15em; margin-bottom: 20px;">Загрузите своё фото и увидите себя в роли космонавта в ракете на фоне Земли!</p>
+        <div class="astronaut-maker-box">
+            <div class="astronaut-maker-grid">
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('photoInput').click()">
+                    <div id="uploadContent">
+                        <div class="upload-icon">📸</div>
+                        <div class="upload-text">Загрузите своё фото</div>
+                        <div class="upload-hint">Нажмите или перетащите файл сюда</div>
+                        <button type="button" class="upload-btn" onclick="event.stopPropagation(); document.getElementById('photoInput').click()">Выбрать фото</button>
+                    </div>
+                    <img id="previewImage" class="preview-image" style="display: none;" alt="Превью">
+                    <input type="file" id="photoInput" accept="image/*">
+                </div>
+                <div class="result-area">
+                    <div id="resultPlaceholder" class="result-placeholder">
+                        <div class="result-placeholder-icon">🧑‍🚀</div>
+                        <div>Здесь появится ваш космический портрет!</div>
+                    </div>
+                    <canvas id="resultCanvas" width="600" height="700"></canvas>
+                    <div class="maker-actions" id="makerActions" style="display: none;">
+                        <button class="maker-btn" onclick="downloadResult()">💾 Скачать</button>
+                        <button class="maker-btn secondary" onclick="resetMaker()">🔄 Новое фото</button>
+                    </div>
+                </div>
+                <div class="maker-tips">
+                    <h4>💡 Советы для лучшего результата:</h4>
+                    <ul>
+                        <li>Используйте фото лица анфас (прямо в камеру)</li>
+                        <li>Хорошее освещение и чёткое изображение</li>
+                        <li>Подойдёт фото в полный рост или по пояс</li>
+                        <li>Формат: JPG, PNG (до 10 МБ)</li>
+                        <li>Ваше фото автоматически встроится в скафандр космонавта</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section" id="timeline">
+        <h2 class="section-title">📅 Хронология космической эры</h2>
+        <div class="timeline">
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">1957</div><div class="timeline-title">🛰️ Запуск Спутника-1</div><div class="timeline-desc">Первый искусственный спутник Земли. Начало космической эры.</div></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">1961</div><div class="timeline-title">👨‍🚀 Полёт Гагарина</div><div class="timeline-desc">Юрий Гагарин — первый человек в космосе. "Поехали!"</div></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">1963</div><div class="timeline-title">👩‍🚀 Терешкова в космосе</div><div class="timeline-desc">Первая женщина-космонавт. Позывной "Чайка".</div></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">1965</div><div class="timeline-title">🚶‍♂️ Выход Леонова</div><div class="timeline-desc">Первый выход человека в открытый космос.</div></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">1969</div><div class="timeline-title">🌙 Высадка на Луну</div><div class="timeline-desc">Нил Армстронг и Базз Олдрин ступили на Луну.</div></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">1990</div><div class="timeline-title">🔭 Телескоп Хаббл</div><div class="timeline-desc">Запуск космического телескопа, изменившего астрономию.</div></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">2019</div><div class="timeline-title">⚫ Первое фото чёрной дыры</div><div class="timeline-desc">Event Horizon Telescope получил первое изображение чёрной дыры в галактике M87.</div></div></div>
+            <div class="timeline-item"><div class="timeline-content"><div class="timeline-year">2021</div><div class="timeline-title">🔭 Телескоп Джеймса Уэбба</div><div class="timeline-desc">Запуск самого мощного космического телескопа в истории.</div></div></div>
+        </div>
+    </section>
+
+    <section class="weight-calculator" id="calculator">
+        <h2 class="section-title">⚖️ Калькулятор веса на планетах</h2>
+        <p style="text-align: center; color: #c0e7ff; font-size: 1.1em;">Узнайте, сколько бы вы весили на других планетах!</p>
+        <div class="calculator-box">
+            <div class="calculator-input-group"><label for="earthWeight">Ваш вес на Земле (кг):</label><input type="number" id="earthWeight" placeholder="Например: 70" value="70" min="1" max="500"></div>
+            <div class="weight-results" id="weightResults"></div>
+        </div>
+    </section>
+
+    <section class="quiz-section" id="quiz">
+        <h2 class="section-title">🧠 Космическая викторина</h2>
+        <p style="text-align: center; color: #c0e7ff; font-size: 1.1em;">Проверьте свои знания о Вселенной!</p>
+        <div class="quiz-box" id="quizBox">
+            <div class="quiz-progress"><span>Вопрос: <strong id="questionNumber">1</strong> / <span id="totalQuestions">10</span></span><span>Счёт: <strong id="currentScore">0</strong></span></div>
+            <div class="quiz-question" id="quizQuestion">Загрузка вопроса...</div>
+            <div class="quiz-options" id="quizOptions"></div>
+            <div class="quiz-score" id="quizScore" style="display: none;">
+                <h3 style="color: #00d4ff; margin-bottom: 20px;">🎉 Викторина завершена!</h3>
+                <div>Ваш результат:</div>
+                <div class="quiz-score-value"><span id="finalScore">0</span> / <span id="finalTotal">10</span></div>
+                <div id="quizMessage" style="margin-top: 20px; color: #c0e7ff; font-size: 1.1em;"></div>
+                <button class="quiz-btn" onclick="restartQuiz()">🔄 Пройти снова</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="stars">
+        <h2 class="section-title">⭐ Тайны звёзд</h2>
+        <div class="stars-info">
+            <p style="font-size: 1.1em; text-align: center; color: #fff5d0; line-height: 1.6;">Звёзды — гигантские светящиеся сферы плазмы. Во Вселенной больше звёзд, чем песчинок на всех пляжах Земли.</p>
+            <div class="star-facts">
+                <div class="star-fact" onclick="openModal('sun')"><div class="star-fact-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/19fa1cb72-1ab9-427a-b5aa-44b558affa23.png" alt="Солнце"></div><h4>☀️ Солнце</h4><p>Ближайшая к нам звезда. Возраст — 4,6 млрд лет. Температура ядра — 15 млн °C.</p></div>
+                <div class="star-fact" onclick="openModal('supernova')"><div class="star-fact-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/13f95ff01-97bf-4737-a611-5e05a4df40f0.png" alt="Сверхновая"></div><h4>💫 Сверхновые</h4><p>Грандиозные взрывы массивных звёзд. На пике яркости могут затмить целую галактику.</p></div>
+                <div class="star-fact" onclick="openModal('blackhole')"><div class="star-fact-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/12f39e6ce-24c6-4b0e-8c2d-768212b4affb.png" alt="Чёрная дыра"></div><h4>⚫ Чёрные дыры</h4><p>Область пространства-времени с такой гравитацией, что даже свет не может её покинуть.</p></div>
+                <div class="star-fact" onclick="openModal('neutron')"><div class="star-fact-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/11d593aa7-c89e-4667-a99b-0d5f77aa4c8b.png" alt="Нейтронная звезда"></div><h4>✨ Нейтронные звёзды</h4><p>Сверхплотные остатки сверхновых. Чайная ложка вещества весит миллиард тонн.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="galaxies">
+        <h2 class="section-title">🌌 Величие галактик</h2>
+        <div class="galaxies-container">
+            <div class="galaxy-card" onclick="openModal('milkyway')"><div class="galaxy-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/139dc931e-86e9-481b-bece-d42aa330741a.png" alt="Млечный Путь"></div><div class="galaxy-content"><h3>Млечный Путь</h3><p>Наша родная галактика. Спиральная, содержит 200–400 млрд звёзд. Диаметр — около 100 000 световых лет.</p></div></div>
+            <div class="galaxy-card" onclick="openModal('andromeda')"><div class="galaxy-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/10a5828aa-39e9-489f-87da-10af9dbb5a55.png" alt="Андромеда"></div><div class="galaxy-content"><h3>Андромеда (M31)</h3><p>Ближайшая крупная спиральная галактика. Содержит около 1 триллиона звёзд. Через 4,5 млрд лет столкнётся с Млечным Путём.</p></div></div>
+            <div class="galaxy-card" onclick="openModal('sombrero')"><div class="galaxy-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/115400834-f1ef-4fe3-b3ff-a5ad1f4de1d9.png" alt="Сомбреро"></div><div class="galaxy-content"><h3>Сомбреро (M104)</h3><p>Уникальная галактика с ярким ядром и пылевым диском, напоминающим мексиканскую шляпу.</p></div></div>
+            <div class="galaxy-card" onclick="openModal('whirlpool')"><div class="galaxy-image"><img src="https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1651b8d62-7bd0-4332-b464-113450bd3914.png" alt="Водоворот"></div><div class="galaxy-content"><h3>Водоворот (M51)</h3><p>Классическая спиральная галактика, взаимодействующая с соседней. Идеальный пример спиральной структуры.</p></div></div>
+        </div>
+    </section>
+
+    <section class="section" id="life">
+        <h2 class="section-title">👽 Жизнь во Вселенной</h2>
+        <div class="life-probability">
+            <div class="life-card"><h3>🌍 Экзопланеты</h3><p>На сегодняшний день открыто более 5 500 экзопланет. Многие из них находятся в "зоне обитаемости" своих звёзд.</p><div class="probability-bar"><div class="probability-fill" data-width="85"></div></div><p><strong>Вероятность существования жизни:</strong> 85%</p></div>
+            <div class="life-card"><h3>💧 Вода во Вселенной</h3><p>Вода обнаружена на Марсе, ледяных спутниках Юпитера и Сатурна, в атмосферах экзопланет.</p><div class="probability-bar"><div class="probability-fill" data-width="75"></div></div><p><strong>Потенциально обитаемые миры:</strong> 75%</p></div>
+            <div class="life-card"><h3>🛸 Сигналы из космоса</h3><p>Проект SETI десятилетиями ищет искусственные радиосигналы. Пока — тишина.</p><div class="probability-bar"><div class="probability-fill" data-width="30"></div></div><p><strong>Обнаружено подтверждений:</strong> 30%</p></div>
+            <div class="life-card"><h3>🧬 Органические молекулы</h3><p>Аминокислоты найдены в метеоритах, кометах и межзвёздных облаках.</p><div class="probability-bar"><div class="probability-fill" data-width="90"></div></div><p><strong>Распространённость:</strong> 90%</p></div>
+            <div class="life-card"><h3>🔭 Уравнение Дрейка</h3><p>Математическая оценка числа цивилизаций в Галактике.</p><ul class="evidence-list"><li>Скорость образования звёзд</li><li>Доля звёзд с планетами</li><li>Число планет в обитаемой зоне</li><li>Вероятность возникновения жизни</li></ul></div>
+            <div class="life-card"><h3>🚀 Миссии будущего</h3><p>Космические телескопы нового поколения смогут анализировать атмосферы экзопланет.</p><ul class="evidence-list"><li>Телескоп Джеймса Уэбба</li><li>Миссия Europa Clipper</li><li>Проект Breakthrough Starshot</li><li>Телескоп Nancy Grace Roman</li></ul></div>
+        </div>
+    </section>
+
+    <section class="reviews-section" id="reviews">
+        <h2 class="section-title">⭐ Оценки и отзывы посетителей</h2>
+        <p style="text-align: center; color: #c0e7ff; font-size: 1.1em; margin-bottom: 30px;">Поделитесь своим мнением о сайте!</p>
+        <div class="reviews-overview">
+            <div class="reviews-summary">
+                <div class="reviews-avg-value" id="avgRating">0.0</div>
+                <div class="reviews-avg-stars" id="avgStars">☆☆☆☆☆</div>
+                <div class="reviews-total-count">Всего отзывов: <strong id="totalReviews">0</strong></div>
+            </div>
+            <div class="reviews-distribution" id="reviewsDistribution">
+                <div class="distribution-row"><div class="distribution-label">⭐⭐⭐⭐⭐ 5</div><div class="distribution-bar"><div class="distribution-fill" data-stars="5" style="width: 0%"></div></div><div class="distribution-count" data-count="5">0</div></div>
+                <div class="distribution-row"><div class="distribution-label">⭐⭐⭐⭐ 4</div><div class="distribution-bar"><div class="distribution-fill" data-stars="4" style="width: 0%"></div></div><div class="distribution-count" data-count="4">0</div></div>
+                <div class="distribution-row"><div class="distribution-label">⭐⭐⭐ 3</div><div class="distribution-bar"><div class="distribution-fill" data-stars="3" style="width: 0%"></div></div><div class="distribution-count" data-count="3">0</div></div>
+                <div class="distribution-row"><div class="distribution-label">⭐⭐ 2</div><div class="distribution-bar"><div class="distribution-fill" data-stars="2" style="width: 0%"></div></div><div class="distribution-count" data-count="2">0</div></div>
+                <div class="distribution-row"><div class="distribution-label">⭐ 1</div><div class="distribution-bar"><div class="distribution-fill" data-stars="1" style="width: 0%"></div></div><div class="distribution-count" data-count="1">0</div></div>
+            </div>
+        </div>
+        <div class="review-form-box">
+            <h3 class="review-form-title">✍️ Оставьте свой отзыв</h3>
+            <form id="reviewForm" onsubmit="submitReview(event)">
+                <div class="form-group"><label for="reviewName">👤 Ваше имя</label><input type="text" id="reviewName" placeholder="Например: Космический путешественник" maxlength="50" required></div>
+                <div class="form-group">
+                    <label>⭐ Ваша оценка</label>
+                    <div class="star-rating">
+                        <input type="radio" name="rating" id="star5" value="5" required><label for="star5" title="5 звёзд - Отлично!">★</label>
+                        <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 звезды">★</label>
+                        <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 звезды">★</label>
+                        <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 звезды">★</label>
+                        <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 звезда">★</label>
+                    </div>
+                    <div class="rating-text" id="ratingText">Выберите количество звёзд</div>
+                </div>
+                <div class="form-group"><label for="reviewText">💬 Ваш отзыв</label><textarea id="reviewText" placeholder="Расскажите, что вам понравилось..." maxlength="1000" required></textarea><div class="char-counter" id="charCounter">0 / 1000 символов</div></div>
+                <button type="submit" class="submit-review-btn" id="submitBtn">🚀 Отправить отзыв</button>
+            </form>
+        </div>
+        <div class="reviews-list-header">
+            <h3 class="reviews-list-title">💬 Отзывы (<span id="reviewsCount">0</span>)</h3>
+            <div class="reviews-sort"><label for="sortReviews">Сортировка:</label><select id="sortReviews" onchange="renderReviews()"><option value="newest">Сначала новые</option><option value="oldest">Сначала старые</option><option value="highest">Высокие оценки</option><option value="lowest">Низкие оценки</option><option value="popular">Популярные</option></select></div>
+        </div>
+        <div class="reviews-list" id="reviewsList"></div>
+    </section>
+
+    <footer>
+        <p class="footer-text">🌌 ВСЕЛЕННАЯ И КОСМОС © 2026 🌌</p>
+        <p class="footer-text" style="font-size: 0.9em; margin-top: 10px; opacity: 0.7;">"Где-то что-то невероятное ждёт, чтобы быть познанным" — Карл Саган</p>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const modalData = {
+            mercury: { title: 'Меркурий', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1578e5803-0f84-4385-9c75-bf3099ca867a.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">4 879 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">88 дней</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">58 дней</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">0</div><div class="stat-label">Спутников</div></div></div><h3>🌡️ Экстремальные температуры</h3><div class="fact-box"><strong>Интересный факт:</strong> Днём +430°C, ночью -180°C. Самый большой перепад в Солнечной системе!</div>` },
+            venus: { title: 'Венера', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/133119403-9649-45f5-9c3f-cb92df73ba76.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">12 104 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">225 дней</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">243 дня</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">0</div><div class="stat-label">Спутников</div></div></div><h3>🌡️ Адская планета</h3><div class="fact-box"><strong>Интересный факт:</strong> Самая горячая планета! Температура +462°C — плавится свинец.</div>` },
+            earth: { title: 'Земля', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/15fe17c5b-881f-4478-b505-a40e2d1d9cfc.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">12 742 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">365.25 дней</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">24 часа</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">1</div><div class="stat-label">Спутник (Луна)</div></div></div><h3>🌍 Наш дом</h3><div class="fact-box"><strong>Интересный факт:</strong> Единственная планета с жизнью. 71% поверхности покрыто водой.</div>` },
+            mars: { title: 'Марс', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1cb45adb0-8010-44be-a7ac-e1021b644109.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">6 779 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">687 дней</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">24.6 часа</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">2</div><div class="stat-label">Спутника</div></div></div><h3>🔴 Красная планета</h3><div class="fact-box"><strong>Интересный факт:</strong> Красный цвет — из-за оксида железа (ржавчины). Олимп — высочайший вулкан (21,9 км).</div>` },
+            jupiter: { title: 'Юпитер', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/179527ac5-de4d-42ba-a2cc-31079ed7e35e.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">139 820 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">12 лет</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">9.9 часа</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">95</div><div class="stat-label">Спутников</div></div></div><h3>👑 Король планет</h3><div class="fact-box"><strong>Интересный факт:</strong> Все планеты поместились бы внутри! Большое Красное Пятно — шторм 350+ лет.</div>` },
+            saturn: { title: 'Сатурн', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/163feed03-e709-446d-9c3b-4aea471915cd.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">116 460 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">29 лет</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">10.7 часа</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">146</div><div class="stat-label">Спутников</div></div></div><h3>💍 Властелин колец</h3><div class="fact-box"><strong>Интересный факт:</strong> Единственная планета, которая плавала бы в воде! Плотность меньше воды.</div>` },
+            uranus: { title: 'Уран', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/10932e1ca-5366-48ef-8ecd-61caf8198edb.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">50 724 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">84 года</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">17.2 часа</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">27</div><div class="stat-label">Спутников</div></div></div><h3>🧊 Ледяной гигант</h3><div class="fact-box"><strong>Интересный факт:</strong> Вращается "лёжа на боку" — ось наклонена на 98°.</div>` },
+            neptune: { title: 'Нептун', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1b71fbe75-03ad-448a-87a9-b428aec11b16.png', content: `<h3>📊 Характеристики</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">49 244 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">165 лет</div><div class="stat-label">Год</div></div><div class="stat-item"><div class="stat-value">16.1 часа</div><div class="stat-label">Сутки</div></div><div class="stat-item"><div class="stat-value">16</div><div class="stat-label">Спутников</div></div></div><h3>💨 Повелитель ветров</h3><div class="fact-box"><strong>Интересный факт:</strong> Самые быстрые ветры в системе — до 2 100 км/ч!</div>` },
+            gagarin: { title: 'Юрий Гагарин', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1200f672f-8440-4463-b193-44e7b35e79bf.png', content: `<h3>👨‍🚀 Первый космонавт</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">9 марта 1934</div><div class="stat-label">Рождение</div></div><div class="stat-item"><div class="stat-value">27 марта 1968</div><div class="stat-label">Гибель</div></div><div class="stat-item"><div class="stat-value">108 минут</div><div class="stat-label">Полёт</div></div><div class="stat-item"><div class="stat-value">12 апреля 1961</div><div class="stat-label">Дата</div></div></div><h3>🚀 Исторический полёт</h3><div class="fact-box"><strong>12 апреля 1961:</strong> Корабль "Восток-1" стартовал с Байконура. "Поехали!" — символ космической эры.</div>` },
+            tereshkova: { title: 'Валентина Терешкова', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/11a572c2c-6ebd-440c-9f7c-5cc7f413dacf.png', content: `<h3>👩‍🚀 Первая женщина в космосе</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">6 марта 1937</div><div class="stat-label">Рождение</div></div><div class="stat-item"><div class="stat-value">16 июня 1963</div><div class="stat-label">Полёт</div></div><div class="stat-item"><div class="stat-value">70 ч 41 мин</div><div class="stat-label">Длительность</div></div><div class="stat-item"><div class="stat-value">48</div><div class="stat-label">Витков</div></div></div><h3>🕊️ "Чайка"</h3><div class="fact-box"><strong>Позывной "Чайка":</strong> Полёт на "Восток-6" доказал, что женщины могут покорять космос.</div>` },
+            leonov: { title: 'Алексей Леонов', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1e43628ae-9a5f-45d1-8d31-3c19ea03de4f.png', content: `<h3>🚶‍♂️ Первый в открытом космосе</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">30 мая 1934</div><div class="stat-label">Рождение</div></div><div class="stat-item"><div class="stat-value">11 октября 2019</div><div class="stat-label">Смерть</div></div><div class="stat-item"><div class="stat-value">12 мин 9 сек</div><div class="stat-label">Выход</div></div><div class="stat-item"><div class="stat-value">2</div><div class="stat-label">Полёта</div></div></div><h3>🌌 Исторический выход</h3><div class="fact-box"><strong>18 марта 1965:</strong> Первый выход в открытый космос из "Восход-2".</div>` },
+            armstrong: { title: 'Нил Армстронг', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/16d9d63c8-8566-4614-b61f-ef3ba693dda0.png', content: `<h3>👨‍🚀 Первый на Луне</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">5 августа 1930</div><div class="stat-label">Рождение</div></div><div class="stat-item"><div class="stat-value">25 августа 2012</div><div class="stat-label">Смерть</div></div><div class="stat-item"><div class="stat-value">20 июля 1969</div><div class="stat-label">Луна</div></div><div class="stat-item"><div class="stat-value">2 ч 31 мин</div><div class="stat-label">На Луне</div></div></div><h3>👣 "Маленький шаг"</h3><div class="fact-box"><strong>20 июля 1969:</strong> "Один маленький шаг для человека, но гигантский скачок для человечества".</div>` },
+            sun: { title: 'Солнце', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/19fa1cb72-1ab9-427a-b5aa-44b558affa23.png', content: `<h3>☀️ Наша звезда</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">1.39 млн км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">4.6 млрд лет</div><div class="stat-label">Возраст</div></div><div class="stat-item"><div class="stat-value">15 млн °C</div><div class="stat-label">Ядро</div></div><div class="stat-item"><div class="stat-value">5 500 °C</div><div class="stat-label">Поверхность</div></div></div><h3>🔥 Термоядерный реактор</h3><div class="fact-box"><strong>Интересный факт:</strong> Каждую секунду превращает 4 млн тонн вещества в энергию!</div>` },
+            supernova: { title: 'Сверхновые', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/13f95ff01-97bf-4737-a611-5e05a4df40f0.png', content: `<h3>💫 Космические взрывы</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">10 млрд</div><div class="stat-label">°C</div></div><div class="stat-item"><div class="stat-value">10 000 км/с</div><div class="stat-label">Расширение</div></div><div class="stat-item"><div class="stat-value">100 млрд</div><div class="stat-label">Яркость</div></div><div class="stat-item"><div class="stat-value">100 дней</div><div class="stat-label">Пик</div></div></div><h3>🌟 Финал звезды</h3><div class="fact-box"><strong>Интересный факт:</strong> Во время взрыва звезда может затмить целую галактику!</div>` },
+            blackhole: { title: 'Чёрные дыры', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/12f39e6ce-24c6-4b0e-8c2d-768212b4affb.png', content: `<h3>⚫ Пожиратели света</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">∞</div><div class="stat-label">Плотность</div></div><div class="stat-item"><div class="stat-value">c</div><div class="stat-label">Скорость</div></div><div class="stat-item"><div class="stat-value">40 млрд</div><div class="stat-label">Масса TON 618</div></div><div class="stat-item"><div class="stat-value">2019</div><div class="stat-label">Первое фото</div></div></div><h3>🌀 Точки невозврата</h3><div class="fact-box"><strong>Интересный факт:</strong> Сожмите Землю до 9 мм — получится чёрная дыра!</div>` },
+            neutron: { title: 'Нейтронные звёзды', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/11d593aa7-c89e-4667-a99b-0d5f77aa4c8b.png', content: `<h3>✨ Сверхплотные остатки</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">20 км</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">1.4-2.1 M☉</div><div class="stat-label">Масса</div></div><div class="stat-item"><div class="stat-value">716 Гц</div><div class="stat-label">Вращение</div></div><div class="stat-item"><div class="stat-value">10¹²</div><div class="stat-label">Магнитное поле</div></div></div><h3>💎 Космические алмазы</h3><div class="fact-box"><strong>Интересный факт:</strong> Чайная ложка вещества весит 1 миллиард тонн!</div>` },
+            milkyway: { title: 'Млечный Путь', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/139dc931e-86e9-481b-bece-d42aa330741a.png', content: `<h3>🌀 Наша галактика</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">100 000 св. лет</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">200-400 млрд</div><div class="stat-label">Звёзд</div></div><div class="stat-item"><div class="stat-value">1 000 св. лет</div><div class="stat-label">Толщина</div></div><div class="stat-item"><div class="stat-value">13.6 млрд лет</div><div class="stat-label">Возраст</div></div></div><h3>🌌 Наш дом</h3><div class="fact-box"><strong>Интересный факт:</strong> Один оборот вокруг центра — 225-250 миллионов лет.</div>` },
+            andromeda: { title: 'Андромеда (M31)', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/10a5828aa-39e9-489f-87da-10af9dbb5a55.png', content: `<h3>🌠 Ближайшая галактика</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">220 000 св. лет</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">1 трлн</div><div class="stat-label">Звёзд</div></div><div class="stat-item"><div class="stat-value">2.5 млн св. лет</div><div class="stat-label">Расстояние</div></div><div class="stat-item"><div class="stat-value">110 км/с</div><div class="stat-label">Сближение</div></div></div><h3>🔭 Сестра Млечного Пути</h3><div class="fact-box"><strong>Интересный факт:</strong> Самый далёкий объект, видимый невооружённым глазом!</div>` },
+            sombrero: { title: 'Сомбреро (M104)', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/115400834-f1ef-4fe3-b3ff-a5ad1f4de1d9.png', content: `<h3>🎩 Космическая шляпа</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">50 000 св. лет</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">100 млрд</div><div class="stat-label">Звёзд</div></div><div class="stat-item"><div class="stat-value">29 млн св. лет</div><div class="stat-label">Расстояние</div></div><div class="stat-item"><div class="stat-value">1 млрд M☉</div><div class="stat-label">Чёрная дыра</div></div></div><h3>🌌 Уникальная структура</h3><div class="fact-box"><strong>Интересный факт:</strong> Название из-за сходства с мексиканской шляпой.</div>` },
+            whirlpool: { title: 'Водоворот (M51)', image: 'https://image.qwenlm.ai/public_source/fb66a098-1ee8-4273-a7b2-23c7d0bfda5c/1651b8d62-7bd0-4332-b464-113450bd3914.png', content: `<h3>🌀 Танец галактик</h3><div class="stats-grid"><div class="stat-item"><div class="stat-value">76 000 св. лет</div><div class="stat-label">Диаметр</div></div><div class="stat-item"><div class="stat-value">160 млрд</div><div class="stat-label">Звёзд</div></div><div class="stat-item"><div class="stat-value">23 млн св. лет</div><div class="stat-label">Расстояние</div></div><div class="stat-item"><div class="stat-value">19 млн M☉</div><div class="stat-label">Чёрная дыра</div></div></div><h3>💫 Гравитационный танец</h3><div class="fact-box"><strong>Интересный факт:</strong> Взаимодействует с галактикой NGC 5195.</div>` }
+        };
+
+        const solarSystemData = [
+            { name: 'Меркурий', color: '#a0a0a0', size: 8, orbit: 80, speed: 4.15, orbitalSpeed: 47.87, id: 'mercury' },
+            { name: 'Венера', color: '#e8b87d', size: 12, orbit: 120, speed: 1.62, orbitalSpeed: 35.02, id: 'venus' },
+            { name: 'Земля', color: '#6bb6ff', size: 13, orbit: 165, speed: 1, orbitalSpeed: 29.78, id: 'earth' },
+            { name: 'Марс', color: '#e07856', size: 10, orbit: 210, speed: 0.53, orbitalSpeed: 24.07, id: 'mars' },
+            { name: 'Юпитер', color: '#d4a574', size: 28, orbit: 270, speed: 0.084, orbitalSpeed: 13.07, id: 'jupiter' },
+            { name: 'Сатурн', color: '#e8d89a', size: 24, orbit: 330, speed: 0.034, orbitalSpeed: 9.69, id: 'saturn' },
+            { name: 'Уран', color: '#9fd8e0', size: 18, orbit: 380, speed: 0.012, orbitalSpeed: 6.81, id: 'uranus' },
+            { name: 'Нептун', color: '#4a7fd4', size: 17, orbit: 420, speed: 0.006, orbitalSpeed: 5.43, id: 'neptune' }
+        ];
+
+        const quizQuestions = [
+            { question: "Какая планета самая большая?", options: ["Сатурн", "Юпитер", "Нептун", "Уран"], correct: 1 },
+            { question: "Кто первый человек в космосе?", options: ["Армстронг", "Леонов", "Гагарин", "Терешкова"], correct: 2 },
+            { question: "Сколько планет в Солнечной системе?", options: ["7", "8", "9", "10"], correct: 1 },
+            { question: "Ближайшая звезда к Земле?", options: ["Сириус", "Альфа Центавра", "Солнце", "Полярная"], correct: 2 },
+            { question: "Какая планета с кольцами?", options: ["Юпитер", "Уран", "Нептун", "Сатурн"], correct: 3 },
+            { question: "Свет от Солнца до Земли?", options: ["1 мин", "8 мин 20 сек", "1 час", "1 день"], correct: 1 },
+            { question: "Красная планета?", options: ["Венера", "Марс", "Юпитер", "Меркурий"], correct: 1 },
+            { question: "Первый выход в космос?", options: ["Гагарин", "Армстронг", "Леонов", "Гленн"], correct: 2 },
+            { question: "Наша галактика?", options: ["Андромеда", "Млечный Путь", "Треугольник", "Сомбреро"], correct: 1 },
+            { question: "В центре Галактики?", options: ["Нейтронная звезда", "Чёрная дыра", "Красный гигант", "Скопление"], correct: 1 }
+        ];
+
+        const planetGravity = { 'Меркурий': 0.38, 'Венера': 0.91, 'Земля': 1.0, 'Марс': 0.38, 'Юпитер': 2.34, 'Сатурн': 1.06, 'Уран': 0.89, 'Нептун': 1.14, 'Луна': 0.165, 'Плутон': 0.063 };
+        const ratingTexts = { 1: '😞 Ужасно', 2: '😕 Плохо', 3: '😐 Нормально', 4: '😊 Очень хорошо', 5: '🤩 Отлично!' };
+
+        const spaceEvents = [
+            { name: '🚀 Запуск Artemis III — возвращение на Луну', date: new Date('2026-09-15T14:00:00') },
+            { name: '🛰️ Запуск миссии Europa Clipper к спутнику Юпитера', date: new Date('2026-10-01T10:00:00') },
+            { name: '☄️ Прохождение кометы рядом с Землёй', date: new Date('2026-08-12T18:00:00') },
+            { name: '🌑 Полное лунное затмение', date: new Date('2026-12-31T20:00:00') },
+            { name: '🔭 Запуск телескопа Nancy Grace Roman', date: new Date('2027-05-01T12:00:00') }
+        ];
+
+        let currentEvent = null;
+        function getNextEvent() {
+            const now = new Date();
+            const futureEvents = spaceEvents.filter(e => e.date > now).sort((a, b) => a.date - b.date);
+            return futureEvents.length > 0 ? futureEvents[0] : spaceEvents[0];
+        }
+
+        function updateCountdown() {
+            currentEvent = getNextEvent();
+            const now = new Date();
+            const diff = currentEvent.date - now;
+            document.getElementById('countdownEvent').textContent = currentEvent.name;
+            if (diff <= 0) {
+                document.getElementById('cd-days').textContent = '00';
+                document.getElementById('cd-hours').textContent = '00';
+                document.getElementById('cd-minutes').textContent = '00';
+                document.getElementById('cd-seconds').textContent = '00';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        let uploadedImage = null;
+        function initAstronautMaker() {
+            const photoInput = document.getElementById('photoInput');
+            const uploadArea = document.getElementById('uploadArea');
+            photoInput.addEventListener('change', handleFileSelect);
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#00d4ff';
+                uploadArea.style.background = 'rgba(0, 212, 255, 0.1)';
+            });
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.borderColor = 'rgba(0, 212, 255, 0.6)';
+                uploadArea.style.background = 'rgba(0, 10, 40, 0.5)';
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'rgba(0, 212, 255, 0.6)';
+                uploadArea.style.background = 'rgba(0, 10, 40, 0.5)';
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && files[0].type.startsWith('image/')) {
+                    photoInput.files = files;
+                    handleFileSelect({ target: photoInput });
+                }
+            });
+        }
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) { showNotification('Ошибка', 'Выберите изображение', 'error'); return; }
+            if (file.size > 10 * 1024 * 1024) { showNotification('Ошибка', 'Файл слишком большой (макс. 10 МБ)', 'error'); return; }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    uploadedImage = img;
+                    const previewImage = document.getElementById('previewImage');
+                    const uploadContent = document.getElementById('uploadContent');
+                    const uploadArea = document.getElementById('uploadArea');
+                    previewImage.src = event.target.result;
+                    previewImage.style.display = 'block';
+                    uploadContent.style.display = 'none';
+                    uploadArea.classList.add('has-image');
+                    generateAstronautPortrait();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function generateAstronautPortrait() {
+            if (!uploadedImage) return;
+            const canvas = document.getElementById('resultCanvas');
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width;
+            const H = canvas.height;
+            drawSpaceBackground(ctx, W, H);
+            drawRocket(ctx, W, H);
+            drawAstronautWithFace(ctx, W, H, uploadedImage);
+            canvas.style.display = 'block';
+            document.getElementById('resultPlaceholder').style.display = 'none';
+            document.getElementById('makerActions').style.display = 'flex';
+            showNotification('🚀 Готово!', 'Ваш космический портрет создан!', 'success');
+        }
+
+        function drawSpaceBackground(ctx, W, H) {
+            const gradient = ctx.createLinearGradient(0, 0, 0, H);
+            gradient.addColorStop(0, '#000851');
+            gradient.addColorStop(0.5, '#001a6d');
+            gradient.addColorStop(1, '#000851');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, W, H);
+            for (let i = 0; i < 200; i++) {
+                const x = Math.random() * W;
+                const y = Math.random() * H;
+                const size = Math.random() * 2.5 + 0.5;
+                const opacity = Math.random() * 0.8 + 0.2;
+                ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            const nebulaGrad = ctx.createRadialGradient(W * 0.2, H * 0.3, 0, W * 0.2, H * 0.3, 200);
+            nebulaGrad.addColorStop(0, 'rgba(123, 47, 247, 0.4)');
+            nebulaGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = nebulaGrad;
+            ctx.fillRect(0, 0, W, H);
+            const nebulaGrad2 = ctx.createRadialGradient(W * 0.8, H * 0.6, 0, W * 0.8, H * 0.6, 180);
+            nebulaGrad2.addColorStop(0, 'rgba(0, 212, 255, 0.35)');
+            nebulaGrad2.addColorStop(1, 'transparent');
+            ctx.fillStyle = nebulaGrad2;
+            ctx.fillRect(0, 0, W, H);
+            const earthX = W * 0.85;
+            const earthY = H * 0.85;
+            const earthR = 180;
+            const atmGrad = ctx.createRadialGradient(earthX, earthY, earthR * 0.9, earthX, earthY, earthR * 1.3);
+            atmGrad.addColorStop(0, 'rgba(0, 212, 255, 0.5)');
+            atmGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = atmGrad;
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR * 1.3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR, 0, Math.PI * 2);
+            ctx.clip();
+            const earthGrad = ctx.createRadialGradient(earthX - 50, earthY - 50, 0, earthX, earthY, earthR);
+            earthGrad.addColorStop(0, '#8ecfff');
+            earthGrad.addColorStop(0.5, '#1e5a9e');
+            earthGrad.addColorStop(1, '#0a2a5e');
+            ctx.fillStyle = earthGrad;
+            ctx.fillRect(earthX - earthR, earthY - earthR, earthR * 2, earthR * 2);
+            ctx.fillStyle = 'rgba(45, 122, 45, 0.8)';
+            ctx.beginPath(); ctx.ellipse(earthX - 40, earthY - 20, 50, 30, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(earthX + 30, earthY - 50, 60, 35, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(earthX + 50, earthY + 30, 45, 28, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(earthX - 60, earthY + 50, 40, 25, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.beginPath(); ctx.ellipse(earthX - 30, earthY - 60, 70, 15, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(earthX + 40, earthY, 80, 18, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(earthX - 50, earthY + 40, 55, 12, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.restore();
+        }
+
+        function drawRocket(ctx, W, H) {
+            const rx = W * 0.15;
+            const ry = H * 0.45;
+            ctx.save();
+            ctx.translate(rx, ry);
+            ctx.rotate(-0.15);
+            const flameGrad = ctx.createRadialGradient(0, 110, 0, 0, 110, 50);
+            flameGrad.addColorStop(0, 'rgba(255, 255, 0, 0.9)');
+            flameGrad.addColorStop(0.4, 'rgba(255, 136, 0, 0.8)');
+            flameGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = flameGrad;
+            ctx.beginPath();
+            ctx.ellipse(0, 130, 30, 60, 0, 0, Math.PI * 2);
+            ctx.fill();
+            const bodyGrad = ctx.createLinearGradient(-35, 0, 35, 0);
+            bodyGrad.addColorStop(0, '#a0a0a0');
+            bodyGrad.addColorStop(0.5, '#ffffff');
+            bodyGrad.addColorStop(1, '#808080');
+            ctx.fillStyle = bodyGrad;
+            ctx.beginPath();
+            ctx.moveTo(-35, 0);
+            ctx.lineTo(-35, 100);
+            ctx.lineTo(35, 100);
+            ctx.lineTo(35, 0);
+            ctx.quadraticCurveTo(35, -20, 0, -60);
+            ctx.quadraticCurveTo(-35, -20, -35, 0);
+            ctx.fill();
+            const noseGrad = ctx.createLinearGradient(-35, -60, 35, -60);
+            noseGrad.addColorStop(0, '#cc0000');
+            noseGrad.addColorStop(0.5, '#ff3333');
+            noseGrad.addColorStop(1, '#990000');
+            ctx.fillStyle = noseGrad;
+            ctx.beginPath();
+            ctx.moveTo(-35, -10);
+            ctx.quadraticCurveTo(-35, -40, 0, -70);
+            ctx.quadraticCurveTo(35, -40, 35, -10);
+            ctx.closePath();
+            ctx.fill();
+            const windowGrad = ctx.createRadialGradient(-5, 20, 0, 0, 25, 20);
+            windowGrad.addColorStop(0, '#00d4ff');
+            windowGrad.addColorStop(1, '#004e92');
+            ctx.fillStyle = windowGrad;
+            ctx.beginPath();
+            ctx.arc(0, 25, 18, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#606060';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.fillStyle = '#cc0000';
+            ctx.fillRect(-35, 60, 70, 10);
+            ctx.fillStyle = '#cc0000';
+            ctx.beginPath();
+            ctx.moveTo(-35, 80);
+            ctx.lineTo(-60, 110);
+            ctx.lineTo(-35, 100);
+            ctx.closePath();
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(35, 80);
+            ctx.lineTo(60, 110);
+            ctx.lineTo(35, 100);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function drawAstronautWithFace(ctx, W, H, userImage) {
+            const ax = W * 0.5;
+            const ay = H * 0.5;
+            ctx.save();
+            ctx.translate(ax, ay);
+            const backpackGrad = ctx.createLinearGradient(0, -30, 0, 100);
+            backpackGrad.addColorStop(0, '#c0c0c0');
+            backpackGrad.addColorStop(1, '#707070');
+            ctx.fillStyle = backpackGrad;
+            ctx.fillRect(-60, -30, 120, 140);
+            ctx.strokeStyle = '#505050';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(-60, -30, 120, 140);
+            const legGrad = ctx.createLinearGradient(0, 100, 0, 200);
+            legGrad.addColorStop(0, '#ffffff');
+            legGrad.addColorStop(1, '#a0a0a0');
+            ctx.fillStyle = legGrad;
+            ctx.beginPath();
+            ctx.roundRect(-50, 100, 40, 100, 15);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.roundRect(10, 100, 40, 100, 15);
+            ctx.fill();
+            ctx.save();
+            ctx.translate(-70, 0);
+            ctx.rotate(-0.3);
+            ctx.fillStyle = legGrad;
+            ctx.beginPath();
+            ctx.roundRect(-20, 0, 40, 110, 18);
+            ctx.fill();
+            ctx.restore();
+            ctx.save();
+            ctx.translate(70, 0);
+            ctx.rotate(0.3);
+            ctx.fillStyle = legGrad;
+            ctx.beginPath();
+            ctx.roundRect(-20, 0, 40, 110, 18);
+            ctx.fill();
+            ctx.restore();
+            const bodyGrad = ctx.createLinearGradient(0, -40, 0, 110);
+            bodyGrad.addColorStop(0, '#ffffff');
+            bodyGrad.addColorStop(0.5, '#e8e8e8');
+            bodyGrad.addColorStop(1, '#b0b0b0');
+            ctx.fillStyle = bodyGrad;
+            ctx.beginPath();
+            ctx.roundRect(-70, -40, 140, 160, 30);
+            ctx.fill();
+            ctx.strokeStyle = '#808080';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            const panelGrad = ctx.createLinearGradient(0, 0, 0, 60);
+            panelGrad.addColorStop(0, '#505050');
+            panelGrad.addColorStop(1, '#303030');
+            ctx.fillStyle = panelGrad;
+            ctx.beginPath();
+            ctx.roundRect(-45, 10, 90, 65, 10);
+            ctx.fill();
+            ctx.fillStyle = '#ff3333';
+            ctx.shadowColor = '#ff3333';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(-25, 30, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#00ff00';
+            ctx.shadowColor = '#00ff00';
+            ctx.beginPath();
+            ctx.arc(25, 30, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#00d4ff';
+            ctx.shadowColor = '#00d4ff';
+            ctx.beginPath();
+            ctx.arc(0, 55, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(-65, -20, 25, 18);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(-65, -20, 25, 6);
+            ctx.fillStyle = '#0033aa';
+            ctx.fillRect(-65, -14, 25, 6);
+            ctx.fillStyle = '#cc0000';
+            ctx.fillRect(-65, -8, 25, 6);
+            const helmetGrad = ctx.createRadialGradient(-20, -100, 0, 0, -80, 80);
+            helmetGrad.addColorStop(0, '#ffffff');
+            helmetGrad.addColorStop(0.6, '#e0e0e0');
+            helmetGrad.addColorStop(1, '#909090');
+            ctx.fillStyle = helmetGrad;
+            ctx.beginPath();
+            ctx.arc(0, -80, 75, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#606060';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.fillStyle = '#404040';
+            ctx.beginPath();
+            ctx.ellipse(0, -80, 62, 50, 0, 0, Math.PI * 2);
+            ctx.fill();
+            const visorGrad = ctx.createLinearGradient(-60, -120, 60, -40);
+            visorGrad.addColorStop(0, 'rgba(255, 215, 0, 0.4)');
+            visorGrad.addColorStop(0.3, 'rgba(255, 140, 0, 0.3)');
+            visorGrad.addColorStop(0.7, 'rgba(139, 69, 19, 0.35)');
+            visorGrad.addColorStop(1, 'rgba(74, 37, 17, 0.45)');
+            ctx.fillStyle = visorGrad;
+            ctx.beginPath();
+            ctx.ellipse(0, -80, 58, 46, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.save();
+            ctx.beginPath();
+            ctx.ellipse(0, -80, 55, 43, 0, 0, Math.PI * 2);
+            ctx.clip();
+            const faceSize = 90;
+            const imgAspect = userImage.width / userImage.height;
+            let drawW, drawH, drawX, drawY;
+            if (imgAspect > 1) { drawH = faceSize * 2; drawW = drawH * imgAspect; }
+            else { drawW = faceSize * 2; drawH = drawW / imgAspect; }
+            drawX = -drawW / 2;
+            drawY = -80 - drawH / 2;
+            ctx.drawImage(userImage, drawX, drawY, drawW, drawH);
+            const vignetteGrad = ctx.createRadialGradient(0, -80, 20, 0, -80, 55);
+            vignetteGrad.addColorStop(0, 'rgba(255, 140, 0, 0)');
+            vignetteGrad.addColorStop(0.7, 'rgba(139, 69, 19, 0.2)');
+            vignetteGrad.addColorStop(1, 'rgba(74, 37, 17, 0.5)');
+            ctx.fillStyle = vignetteGrad;
+            ctx.fillRect(-60, -130, 120, 100);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.beginPath();
+            ctx.ellipse(-25, -100, 18, 10, -0.3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+            ctx.strokeStyle = '#606060';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(-50, -140);
+            ctx.lineTo(-50, -160);
+            ctx.stroke();
+            ctx.fillStyle = '#ff3333';
+            ctx.shadowColor = '#ff3333';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(-50, -163, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.restore();
+        }
+
+        function downloadResult() {
+            const canvas = document.getElementById('resultCanvas');
+            const link = document.createElement('a');
+            link.download = 'my-space-portrait.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showNotification('💾 Сохранено!', 'Ваш космический портрет скачан', 'success');
+        }
+
+        function resetMaker() {
+            uploadedImage = null;
+            document.getElementById('photoInput').value = '';
+            document.getElementById('previewImage').style.display = 'none';
+            document.getElementById('uploadContent').style.display = 'flex';
+            document.getElementById('uploadContent').style.flexDirection = 'column';
+            document.getElementById('uploadContent').style.alignItems = 'center';
+            document.getElementById('resultCanvas').style.display = 'none';
+            document.getElementById('resultPlaceholder').style.display = 'block';
+            document.getElementById('makerActions').style.display = 'none';
+            document.getElementById('uploadArea').classList.remove('has-image');
+        }
+
+        function createSolarSystem() {
+            const container = document.getElementById('solarSystem');
+            const containerSize = container.offsetWidth;
+            const scale = Math.min(containerSize / 900, 1);
+            solarSystemData.forEach((planet, index) => {
+                const orbit = document.createElement('div');
+                orbit.className = 'orbit';
+                orbit.style.width = (planet.orbit * 2 * scale) + 'px';
+                orbit.style.height = (planet.orbit * 2 * scale) + 'px';
+                container.appendChild(orbit);
+                const planetWrapper = document.createElement('div');
+                planetWrapper.className = 'orbit-planet';
+                planetWrapper.style.animation = `rotateOrbit${index} ${30 / planet.speed}s linear infinite`;
+                const planetDot = document.createElement('div');
+                planetDot.className = 'planet-dot';
+                planetDot.style.width = (planet.size * scale) + 'px';
+                planetDot.style.height = (planet.size * scale) + 'px';
+                planetDot.style.background = `radial-gradient(circle at 30% 30%, ${planet.color}, ${planet.color}88)`;
+                planetDot.style.color = planet.color;
+                planetDot.style.left = (planet.orbit * scale) + 'px';
+                planetDot.style.top = -(planet.size * scale / 2) + 'px';
+                planetDot.onclick = () => openModal(planet.id);
+                const speedLabel = document.createElement('div');
+                speedLabel.className = 'planet-speed-label';
+                speedLabel.textContent = planet.orbitalSpeed + ' км/с';
+                planetDot.appendChild(speedLabel);
+                const label = document.createElement('div');
+                label.className = 'planet-dot-label';
+                label.textContent = planet.name;
+                planetDot.appendChild(label);
+                planetWrapper.appendChild(planetDot);
+                container.appendChild(planetWrapper);
+                const style = document.createElement('style');
+                style.textContent = `@keyframes rotateOrbit${index} { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
+                document.head.appendChild(style);
+            });
+        }
+
+        let currentQuestion = 0, score = 0, answered = false;
+        const REVIEWS_STORAGE_KEY = 'cosmos_reviews_v1';
+        let reviews = [], currentUserSession = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createParticles();
+            createSolarSystem();
+            initCounters();
+            initWeightCalculator();
+            initQuiz();
+            initTypedText();
+            initShootingStars();
+            initScrollEffects();
+            initClickParticles();
+            initAstronautMaker();
+            loadReviews();
+            initReviewForm();
+            updateReviewsStats();
+            renderReviews();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 300; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                const colors = ['#00d4ff', '#7b2ff7', '#ff6b6b', '#ffc800', '#00ff64'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 15px ${color}`;
+                document.body.appendChild(particle);
+            }
+        }
+
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter-value');
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const suffix = counter.getAttribute('data-suffix') || '';
+                        animateCounter(counter, target, suffix);
+                        counterObserver.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => counterObserver.observe(counter));
+        }
+
+        function animateCounter(element, target, suffix) {
+            const duration = 2000;
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(target * easeProgress);
+                element.textContent = current.toLocaleString('ru-RU') + suffix;
+                if (progress < 1) requestAnimationFrame(update);
+                else element.textContent = target.toLocaleString('ru-RU') + suffix;
+            }
+            requestAnimationFrame(update);
+        }
+
+        function initWeightCalculator() {
+            const input = document.getElementById('earthWeight');
+            const resultsContainer = document.getElementById('weightResults');
+            function updateWeights() {
+                const earthWeight = parseFloat(input.value) || 0;
+                resultsContainer.innerHTML = '';
+                Object.entries(planetGravity).forEach(([planet, gravity]) => {
+                    const weight = (earthWeight * gravity).toFixed(2);
+                    const item = document.createElement('div');
+                    item.className = 'weight-result-item';
+                    item.innerHTML = `<div class="weight-planet-name">${planet}</div><div class="weight-value">${weight}</div><div class="weight-unit">кг</div>`;
+                    resultsContainer.appendChild(item);
+                });
+            }
+            input.addEventListener('input', updateWeights);
+            updateWeights();
+        }
+
+        function initQuiz() {
+            document.getElementById('totalQuestions').textContent = quizQuestions.length;
+            document.getElementById('finalTotal').textContent = quizQuestions.length;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= quizQuestions.length) { showResults(); return; }
+            answered = false;
+            const q = quizQuestions[currentQuestion];
+            document.getElementById('questionNumber').textContent = currentQuestion + 1;
+            document.getElementById('quizQuestion').textContent = q.question;
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btn) {
+            if (answered) return;
+            answered = true;
+            const q = quizQuestions[currentQuestion];
+            const buttons = document.querySelectorAll('.quiz-option');
+            buttons.forEach((b, i) => {
+                b.disabled = true;
+                if (i === q.correct) b.classList.add('correct');
+            });
+            if (selectedIndex === q.correct) {
+                score++;
+                document.getElementById('currentScore').textContent = score;
+                btn.classList.add('correct');
+            } else {
+                btn.classList.add('wrong');
+            }
+            setTimeout(() => { currentQuestion++; loadQuestion(); }, 1500);
+        }
+
+        function showResults() {
+            document.getElementById('quizOptions').style.display = 'none';
+            document.getElementById('quizQuestion').style.display = 'none';
+            document.querySelector('.quiz-progress').style.display = 'none';
+            document.getElementById('quizScore').style.display = 'block';
+            document.getElementById('finalScore').textContent = score;
+            const percentage = (score / quizQuestions.length) * 100;
+            let message = '';
+            if (percentage === 100) message = '🏆 Идеально! Вы настоящий эксперт!';
+            else if (percentage >= 80) message = '🌟 Отлично!';
+            else if (percentage >= 60) message = '✨ Хорошо!';
+            else if (percentage >= 40) message = '👍 Неплохо!';
+            else message = '📚 Стоит больше узнать о космосе!';
+            document.getElementById('quizMessage').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0; score = 0; answered = false;
+            document.getElementById('currentScore').textContent = 0;
+            document.getElementById('quizOptions').style.display = 'grid';
+            document.getElementById('quizQuestion').style.display = 'block';
+            document.querySelector('.quiz-progress').style.display = 'flex';
+            document.getElementById('quizScore').style.display = 'none';
+            loadQuestion();
+        }
+
+        function initTypedText() {
+            const text = "Откройте для себя тайны мироздания, от нашей Солнечной системы до далёких галактик. Путешествуйте сквозь пространство и время!";
+            const element = document.getElementById('typedText');
+            let index = 0;
+            function type() {
+                if (index < text.length) {
+                    element.innerHTML = text.substring(0, index + 1) + '<span class="typed-cursor">&nbsp;</span>';
+                    index++;
+                    setTimeout(type, 50);
+                } else {
+                    element.innerHTML = text;
+                }
+            }
+            setTimeout(type, 500);
+        }
+
+        function initShootingStars() {
+            function createShootingStar() {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.top = Math.random() * 50 + '%';
+                star.style.left = Math.random() * 50 + '%';
+                star.style.animation = `shootingStar ${Math.random() * 2 + 1.5}s linear forwards`;
+                document.body.appendChild(star);
+                setTimeout(() => star.remove(), 3500);
+            }
+            setInterval(createShootingStar, 3500);
+        }
+
+        function initScrollEffects() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 500) scrollTopBtn.classList.add('visible');
+                else scrollTopBtn.classList.remove('visible');
+            });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const fills = entry.target.querySelectorAll('.probability-fill');
+                        fills.forEach(fill => {
+                            setTimeout(() => { fill.style.width = fill.getAttribute('data-width') + '%'; }, 200);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.life-card').forEach(card => observer.observe(card));
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.section, .solar-system-section, .timeline-section, .weight-calculator, .quiz-section, .reviews-section, .astronaut-maker-section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                sectionObserver.observe(section);
+            });
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+            const hologramContainer = document.getElementById('hologramContainer');
+            document.querySelector('.hero').addEventListener('mousemove', (e) => {
+                const rect = hologramContainer.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const rotateY = ((e.clientX - centerX) / rect.width) * 10;
+                const rotateX = -((e.clientY - centerY) / rect.height) * 10;
+                hologramContainer.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+            });
+            document.querySelector('.hero').addEventListener('mouseleave', () => {
+                hologramContainer.style.transform = 'rotateY(0) rotateX(0)';
+            });
+            const glowEffect = document.getElementById('glowEffect');
+            document.addEventListener('mousemove', (e) => {
+                glowEffect.style.left = e.clientX + 'px';
+                glowEffect.style.top = e.clientY + 'px';
+            });
+        }
+
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        function initClickParticles() {
+            document.addEventListener('click', (e) => {
+                const colors = ['#00d4ff', '#7b2ff7', '#ff6b6b', '#ffc800', '#00ff64'];
+                for (let i = 0; i < 12; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'click-particle';
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.background = color;
+                    particle.style.boxShadow = `0 0 10px ${color}`;
+                    particle.style.left = e.clientX + 'px';
+                    particle.style.top = e.clientY + 'px';
+                    const angle = (Math.PI * 2 * i) / 12;
+                    const distance = 50 + Math.random() * 50;
+                    particle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                    particle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                    document.body.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1000);
+                }
+            });
+        }
+
+        function loadReviews() {
+            try {
+                const stored = localStorage.getItem(REVIEWS_STORAGE_KEY);
+                if (stored) reviews = JSON.parse(stored);
+                else {
+                    reviews = [
+                        { id: 'demo-1', name: 'Алексей К.', rating: 5, text: 'Потрясающий сайт! 3D-модели выглядят невероятно. А функция "Стань космонавтом" — это что-то! Загрузил своё фото и увидел себя в скафандре!', date: Date.now() - 86400000 * 3, likes: 12, liked: false },
+                        { id: 'demo-2', name: 'Мария С.', rating: 5, text: 'Обожаю этот сайт! Теперь на Солнечной системе видны скорости планет — очень познавательно. Калькулятор веса — супер!', date: Date.now() - 86400000 * 2, likes: 8, liked: false },
+                        { id: 'demo-3', name: 'Дмитрий П.', rating: 4, text: 'Отличный образовательный ресурс. Обратный отсчёт до космических событий — крутая идея!', date: Date.now() - 86400000, likes: 5, liked: false },
+                        { id: 'demo-4', name: 'Елена В.', rating: 5, text: 'Показываю этот сайт детям — они в восторге! Особенно от функции с космонавтом. Спасибо!', date: Date.now() - 3600000 * 5, likes: 15, liked: false }
+                    ];
+                    saveReviews();
+                }
+            } catch (e) { reviews = []; }
+        }
+
+        function saveReviews() {
+            try { localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(reviews)); }
+            catch (e) { showNotification('Ошибка', 'Не удалось сохранить', 'error'); }
+        }
+
+        function generateId() { return 'rev-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9); }
+        function getInitials(name) { return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2) || '?'; }
+
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            const diff = Date.now() - date;
+            if (diff < 60000) return 'только что';
+            if (diff < 3600000) return Math.floor(diff / 60000) + ' мин. назад';
+            if (diff < 86400000) return Math.floor(diff / 3600000) + ' ч. назад';
+            if (diff < 604800000) return Math.floor(diff / 86400000) + ' дн. назад';
+            const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+            return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
+        function renderStars(rating) { let stars = ''; for (let i = 1; i <= 5; i++) stars += i <= rating ? '★' : '☆'; return stars; }
+
+        function updateReviewsStats() {
+            const total = reviews.length;
+            document.getElementById('totalReviews').textContent = total;
+            document.getElementById('reviewsCount').textContent = total;
+            if (total === 0) {
+                document.getElementById('avgRating').textContent = '0.0';
+                document.getElementById('avgStars').textContent = '☆☆☆☆☆';
+                document.querySelectorAll('.distribution-fill').forEach(el => el.style.width = '0%');
+                document.querySelectorAll('.distribution-count').forEach(el => el.textContent = '0');
+                return;
+            }
+            const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
+            const avg = (sum / total).toFixed(1);
+            document.getElementById('avgRating').textContent = avg;
+            const fullStars = Math.floor(avg);
+            const halfStar = avg - fullStars >= 0.5;
+            let starsDisplay = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) starsDisplay += '★';
+                else if (i === fullStars + 1 && halfStar) starsDisplay += '★';
+                else starsDisplay += '☆';
+            }
+            document.getElementById('avgStars').textContent = starsDisplay;
+            const distribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+            reviews.forEach(r => distribution[r.rating]++);
+            for (let i = 1; i <= 5; i++) {
+                const count = distribution[i];
+                const percent = total > 0 ? (count / total) * 100 : 0;
+                const fill = document.querySelector(`.distribution-fill[data-stars="${i}"]`);
+                const countEl = document.querySelector(`.distribution-count[data-count="${i}"]`);
+                if (fill) fill.style.width = percent + '%';
+                if (countEl) countEl.textContent = count;
+            }
+        }
+
+        function renderReviews() {
+            const list = document.getElementById('reviewsList');
+            const sortBy = document.getElementById('sortReviews').value;
+            let sorted = [...reviews];
+            switch (sortBy) {
+                case 'newest': sorted.sort((a, b) => b.date - a.date); break;
+                case 'oldest': sorted.sort((a, b) => a.date - b.date); break;
+                case 'highest': sorted.sort((a, b) => b.rating - a.rating); break;
+                case 'lowest': sorted.sort((a, b) => a.rating - b.rating); break;
+                case 'popular': sorted.sort((a, b) => (b.likes || 0) - (a.likes || 0)); break;
+            }
+            if (sorted.length === 0) {
+                list.innerHTML = `<div class="empty-reviews"><div class="empty-reviews-icon">💬</div><div class="empty-reviews-text">Пока нет отзывов</div><div class="empty-reviews-subtext">Станьте первым!</div></div>`;
+                return;
+            }
+            list.innerHTML = sorted.map(review => {
+                const isOwner = currentUserSession && currentUserSession === review.id;
+                return `<div class="review-card" data-id="${review.id}"><div class="review-card-header"><div class="review-author-info"><div class="review-avatar">${getInitials(review.name)}</div><div><div class="review-author-name">${escapeHtml(review.name)}</div><div class="review-date">${formatDate(review.date)}</div></div></div><div class="review-stars">${renderStars(review.rating)}</div></div><div class="review-text">${escapeHtml(review.text)}</div><div class="review-actions"><button class="review-action-btn ${review.liked ? 'liked' : ''}" onclick="toggleLike('${review.id}')">${review.liked ? '❤️' : '🤍'} <span>${review.likes || 0}</span></button>${isOwner ? `<button class="review-action-btn delete-btn" onclick="deleteReview('${review.id}')">🗑️ Удалить</button>` : ''}</div></div>`;
+            }).join('');
+        }
+
+        function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
+
+        function toggleLike(reviewId) {
+            const review = reviews.find(r => r.id === reviewId);
+            if (!review) return;
+            if (review.liked) { review.liked = false; review.likes = Math.max(0, (review.likes || 0) - 1); }
+            else { review.liked = true; review.likes = (review.likes || 0) + 1; }
+            saveReviews();
+            renderReviews();
+        }
+
+        function deleteReview(reviewId) {
+            if (!confirm('Удалить отзыв?')) return;
+            reviews = reviews.filter(r => r.id !== reviewId);
+            saveReviews();
+            updateReviewsStats();
+            renderReviews();
+            showNotification('Удалено', 'Отзыв удалён', 'success');
+        }
+
+        function submitReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('reviewName').value.trim();
+            const text = document.getElementById('reviewText').value.trim();
+            const ratingInput = document.querySelector('input[name="rating"]:checked');
+            if (!name || name.length < 2) { showNotification('Ошибка', 'Введите имя (мин. 2 символа)', 'error'); return; }
+            if (!ratingInput) { showNotification('Ошибка', 'Поставьте оценку', 'error'); return; }
+            if (!text || text.length < 10) { showNotification('Ошибка', 'Отзыв мин. 10 символов', 'error'); return; }
+            const rating = parseInt(ratingInput.value);
+            const newReview = { id: generateId(), name, rating, text, date: Date.now(), likes: 0, liked: false };
+            currentUserSession = newReview.id;
+            reviews.unshift(newReview);
+            saveReviews();
+            document.getElementById('reviewForm').reset();
+            document.getElementById('ratingText').textContent = 'Выберите количество звёзд';
+            document.getElementById('charCounter').textContent = '0 / 1000 символов';
+            document.getElementById('charCounter').className = 'char-counter';
+            updateReviewsStats();
+            renderReviews();
+            showNotification('Спасибо за отзыв! 🚀', `Оценка: ${renderStars(rating)}`, 'success');
+            setTimeout(() => { document.getElementById('reviewsList').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 500);
+        }
+
+        function showNotification(title, message, type = 'info') {
+            const notification = document.getElementById('notification');
+            document.getElementById('notificationTitle').textContent = title;
+            document.getElementById('notificationMessage').textContent = message;
+            notification.className = 'notification ' + type;
+            notification.classList.add('show');
+            setTimeout(() => { notification.classList.remove('show'); }, 4000);
+        }
+
+        function initReviewForm() {
+            const textarea = document.getElementById('reviewText');
+            const charCounter = document.getElementById('charCounter');
+            textarea.addEventListener('input', () => {
+                const length = textarea.value.length;
+                charCounter.textContent = `${length} / 1000 символов`;
+                if (length > 900) charCounter.className = 'char-counter error';
+                else if (length > 700) charCounter.className = 'char-counter warning';
+                else charCounter.className = 'char-counter';
+            });
+            document.querySelectorAll('input[name="rating"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    document.getElementById('ratingText').textContent = ratingTexts[parseInt(input.value)];
+                });
+            });
+        }
+
+        function openModal(id) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const data = modalData[id];
+            if (data) {
+                modalBody.innerHTML = `<div class="modal-header"><h2>${data.title}</h2></div><div class="modal-image"><img src="${data.image}" alt="${data.title}"></div><div class="modal-body">${data.content}</div>`;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modal')) closeModal();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
+
